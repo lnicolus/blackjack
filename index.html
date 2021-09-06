@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="Blackjack" />
+        <meta name="author" content="Lucas Nicolussi" />
+        <title>Simple Sidebar - Start Bootstrap Template</title>        
+        <link rel="icon" type="image/x-icon" href="assets/ace.png" /> <!-- Icons made by "Good Ware" from https://www.flaticon.com/ -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" 
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">        
+        <link href="css/styles.css" rel="stylesheet"/>
+    </head>
+    <body>
+        <div class="dFlex backgroundStyle" id="wrapper">     
+
+            <div class="border-end backgroundStyle" id="sidebar-wrapper">
+                <div class="sidebar-heading border-bottom">Blackjack</div>
+                <div class="list-group list-group-flush backgroundStyle">
+                    <button class="backgroundStyle pad">Place Funds <img src="assets/chip.png" alt="chip"></button>                 
+                    <button class="backgroundStyle pad" onclick="startGame()">Play <img src="assets/cards.png" alt="cards"></button>
+                    <button class="backgroundStyle pad">Hit <img src="assets/luck.png" alt="luck"></button>
+                    <button class="backgroundStyle pad">Stand <img src="assets/stand.png" alt="mountain"></button>
+                    <button class="backgroundStyle pad">Quit <img src="assets/quit.png" alt="exit"></button>
+                </div>
+            </div>
+           
+            <div id="page-content-wrapper">
+                <!-- NOTA: Posiblemente agregue este contenido, queda aqui con ese proposito
+                <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+                    <div class="container-fluid">                
+                            <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
+                                <li class="nav-item active"><a class="nav-link" href="#!">Home</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#!">Link</a></li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="#!">Action</a>
+                                        <a class="dropdown-item" href="#!">Another action</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="#!">Something else here</a>
+                                    </div>
+                                </li>
+                            </ul>                        
+                    </div>
+                </nav> -->
+                <!-- Page content-->
+                <div class="container-fluid">
+                    <h1 class="mt-4">Welcome to Blackjack!</h1>
+                    <p>Click play to start.</p>
+                    <div class="displayCurrentFunds"> </div>
+                    <div class="playerHand">
+
+                    </div>
+                    <div class="bet&Scores">
+        
+                    </div>
+                    <div class="cpuHand">
+                    
+                </div>
+                </div>
+            </div>
+        </div>          
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>       
+        <script src="js/main.js"></script>
+    </body>
+</html>
