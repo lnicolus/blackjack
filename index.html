@@ -17,11 +17,11 @@
             <div class="border-end backgroundStyle" id="sidebar-wrapper">
                 <div class="sidebar-heading border-bottom">Blackjack</div>
                 <div class="list-group list-group-flush backgroundStyle">
-                    <button class="backgroundStyle pad">Place Funds <img src="assets/chip.png" alt="chip"></button>                 
-                    <button class="backgroundStyle pad" onclick="startGame()">Play <img src="assets/cards.png" alt="cards"></button>
-                    <button class="backgroundStyle pad">Hit <img src="assets/luck.png" alt="luck"></button>
-                    <button class="backgroundStyle pad">Stand <img src="assets/stand.png" alt="mountain"></button>
-                    <button class="backgroundStyle pad">Quit <img src="assets/quit.png" alt="exit"></button>
+                    <button class="backgroundStyle pad" onclick="placeFunds()">Place Funds <img src="assets/chip.png" alt="chip"></button>        
+                    <button class="backgroundStyle pad" id="play">Play <img src="assets/cards.png" alt="cards"></button>
+                    <button class="backgroundStyle pad" id="hit">Hit <img src="assets/luck.png" alt="luck"></button>
+                    <button class="backgroundStyle pad" id="stand">Stand <img src="assets/stand.png" alt="mountain"></button>
+                    <button class="backgroundStyle pad" id="quit">Quit <img src="assets/quit.png" alt="exit"></button>
                 </div>
             </div>
            
@@ -48,11 +48,11 @@
                 <div class="container-fluid">
                     <h1 class="mt-4">Welcome to Blackjack!</h1>
                     <p>Click play to start.</p>
-                    <div class="displayCurrentFunds"> </div>
-                    <div class="playerHand">
+                    <div class="displayCurrentFunds"><p id="funds"></p></div>
+                    <div id="playerHand">
 
                     </div>
-                    <div class="bet&Scores">
+                    <div class="betScores">
         
                     </div>
                     <div class="cpuHand">
