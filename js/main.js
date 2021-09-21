@@ -1,4 +1,4 @@
- const deck = [
+ let deck = [
     { card: 11, suit: 'A♠'},
     { card: 2, suit: '2♠'},
     { card: 3, suit: '3♠'},
@@ -56,119 +56,143 @@
     { card: 10, suit: 'K♣'},
   ];
   
-  let fullDeck = [...deck]; // use spread operator para mantener un mazo inalterado al cual volver una vez finalizado el juego y luego copiar las cartas deck = [...fullDeck];
-  const dealtCards = []; // aca guardamos las cartas que ya se repartieron. Serán necesarios 2 arrays: uno para la maquina y otro para el jugador
-
-/* Entrega 9 incorporo un evento de click sobre el botón "hit" que permite seguir el juego, si el jugador se pasa de 21,
-el juego termina. Los cambios hechos en el script son enormes. Incorpore eventos de escucha para todos los botones salvo para agregar fondos.
-Agregue varias funciones e ifs, a fin de que se pueda pedir mas cartas (y perder si uno se pasa de 21) o bien "quedarse" (stand) o abandonar el juego con "quit"
-todavia no esta la opcion de ganar disponible dado que es necesario generar un jugador automatico que responda por la Casa enfrentandose al jugador si este no pierde
-por cuenta propia pasandose de 21*/     
+const fullDeck = [...deck]; // use spread operator para mantener un mazo inalterado al cual volver una vez finalizado el juego y luego copiar las cartas deck = [...fullDeck];
+let dealtCards = []; // aca guardamos las cartas que ya se repartieron. Serán necesarios 2 arrays: uno para la maquina y otro para el jugador
  
-let bet;
+let bet = 0;
 let gameScore = 0;
 let selectedCard;
+let localPlayer = '{"player": "localPlayer", "money": 0}';
 let funds = 0;
-let safety = false;
-document.getElementById("hit").disabled = true;  
-document.getElementById("stand").disabled = true;
+const savedFunds = parseInt(localStorage.getItem('localPlayer'));
 
-let play = document.getElementById("play"); 
+if (savedFunds && !isNaN(savedFunds)){
+  funds = savedFunds;
+}
+
+let safety = false;
+
+function fundsDisplay(msg) { document.getElementById("funds").innerHTML = msg; };
+function scoreDisplay(msg) { document.getElementById("score").innerHTML = msg; };
+function guidance(msg) { document.getElementById("guidance").innerHTML = msg; };
+
+localPlayerFunds = JSON.parse(localPlayer);             // el jugador no pierde sus fondos al refrescar la pagina despues de usar la funcion placeFunds                               
+
+fundsDisplay("You have $" + funds + " to play");
+scoreDisplay("You have currently bet $" + bet + " and have " + gameScore + " points on the table");
+
+// EVENTOS DEL JUEGO : Habilitar o deshabilitar las opciones es esencial para hacer respetar las reglas del juego, al principio, solo se puede depositar fondos y empezar un juego.
+document.getElementById("hit").disabled = true;
+document.getElementById("stand").disabled = true;
+document.getElementById("quit").disabled = true;
+document.getElementById("play").disabled = false;
+
+let play = document.getElementById("play"); // empezamos el juego de forma ordenada
 play.addEventListener('click', () => {
+finishGame();
 startGame();
-document.getElementById("play").disabled = true; 
 });   
+
 
 let hit = document.getElementById("hit");  // hit permite pedir una carta al azar adicional
 hit.addEventListener('click', () => {  
-  selectedCard = dealRandomCard();   
+  selectedCard = dealRandomCard();    // la carta se reparte y sale del array del mazo para no repetirse, cada carta es unica y no queremos hacer trampa
   dealtCards.push(selectedCard); 
-  console.log('deal new card, obtained:'+selectedCard.suit );
-  console.log({ deck, dealtCards });
-  gameScore = gameScore + dealtCards[dealtCards.length - 1].card;
+  gameScore = gameScore + dealtCards[dealtCards.length - 1].card;  
+  scoreDisplay("You have currently bet $" + bet + " and have " + gameScore + " points on the table");
   tableCard();
+ 
 
-  if (gameScore > 21)  {
-    alert("You've been dealt "+ dealtCards[dealtCards.length - 1].suit +" Busted, game over! your score: " + gameScore);
+  if (gameScore > 21)  {    
+    // si el jugador pierde, ya no puede continuar tocando las teclas de juego, pero puede iniciar uno nuevo
+    scoreDisplay("You've been dealt "+ dealtCards[dealtCards.length - 1].suit + " you have thus " + gameScore + " points on the table and you busted! bet lost!");
+    guidance("Click play to start");
     document.getElementById("hit").disabled = true;  
-    document.getElementById("stand").disabled = true; 
-    finishGame();
-    document.getElementById("play").disabled = false;  }
+    document.getElementById("stand").disabled  = true;     
+    document.getElementById("play").disabled  = false;
+    document.getElementById("quit").disabled  = true;
+  }
   });
+
 
 let stand = document.getElementById("stand");  // stand significa que no me pase de 21 y decido jugar mi suerte con el puntaje que ya tengo
 stand.addEventListener('click', () => {
-alert("You stand against the house!");
-document.getElementById("hit").disabled = true;  
-document.getElementById("stand").disabled = true;  
+guidance("You stand against the House!");
+document.getElementById("hit").disabled  = true;  
+document.getElementById("stand").disabled  = true;  
 document.getElementById("play").disabled = true; // temporalmente deshabilito esto para evitar bugs, en el futuro incorporare la jugada del CPU posterior al standing
 });   
+
 
 let quit = document.getElementById("quit");  
 quit.addEventListener('click', () => {
 let safety = confirm("Do you wish to quit? you will lose your bets");
-if ( safety == true ) {
+if (safety) {
 document.getElementById("hit").disabled = true;  
 document.getElementById("stand").disabled = true;
-finishGame();
-document.getElementById("play").disabled = false;}
+document.getElementById("play").disabled = false;
+finishGame(); }
 });  
 
-function dealRandomCard() { // funcion para elegir una carta al azar, reutilizable
+
+// FUNCIONES 
+
+function dealRandomCard() {                           // funcion para elegir una carta al azar, reutilizable
   const index = Math.floor(Math.random() * deck.length);
-  const selectedCard = deck[index]; //guardamos la carta seleccionada en una constante que toma la posición randomizada en el índice del array donde están todas las cartas del mazo
-  deck.splice(index, 1); // removemos la carta del deck
+  const selectedCard = deck[index];                      //guardamos la carta seleccionada en una constante que toma la posición randomizada en el índice del array donde están todas las cartas del mazo
+  deck.splice(index, 1);                                // removemos la carta del deck
   return selectedCard;
 }
 
-function tableCard() { // funcion que agrega una carta en el HTML
+function tableCard() {                                  // funcion que agrega una carta visible en el HTML
   let card = document.createElement('div');
   card.classList.add('hand');
   let card1 = playerHand.appendChild(card);
   card1.textContent = dealtCards[dealtCards.length - 1].suit; 
 }
 
- function placeFunds(){
-
+ function placeFunds(){                                 // muestra de forma dinamica y en tiempo real cuanto dinero virtual posee el jugador
+   
       inputFunds = parseInt(prompt("How much do you wish to add to your account?"));
       
       if( (inputFunds == "") || isNaN(inputFunds) || (inputFunds <= 0) ) {
 
-      alert("Place valid funds");
-      placeFunds();      
+      alert("Place valid funds");         
 
-    } else {
-    funds += inputFunds
-    document.getElementById("funds").innerHTML = " ";
-    document.getElementById("funds").innerHTML = "You have $" + funds + " to play";
-    return funds; 
+    } else {    
+    funds += inputFunds   
+    localStorage.setItem('localPlayer', funds);
+    fundsDisplay(" ");
+    fundsDisplay("You have $" + funds + " to play");  
 
       }
     };
 
- function startGame(bet) {
+ function startGame() {
 
-    bet = (validate_bet(parseInt(prompt("Set your bet"))));
-        
-    let selectedCard = dealRandomCard(); //obtenemos la nueva carta
-    dealtCards.push(selectedCard); //agregamos la carta al array de cartas repartidas
-    console.log('deal new card, obtained:'+selectedCard.suit ); // vemos que cartas se eligieron del array
-    console.log({ deck, dealtCards }); // chequeamos que las cartas hayan salido efectivamente del array (no queremos que salga dos veces la misma!)
+    bet = parseInt(validate_bet(prompt("Set your bet")));    
+     
+    if (!isNaN(bet) && (funds >= 0)) {
+    document.getElementById("play").disabled = true; 
+    let selectedCard = dealRandomCard();                         //obtenemos la nueva carta
+    dealtCards.push(selectedCard);                              //agregamos la carta al array de cartas repartidas
     tableCard();    
     
-    selectedCard = dealRandomCard(); 
+    selectedCard = dealRandomCard();                            // repetimos lo mismo porque son 2 cartas en la primera mano
     dealtCards.push(selectedCard); 
-    console.log('deal new card, obtained:'+selectedCard.suit );
-    console.log({ deck, dealtCards });
     tableCard();
     
     gameScore = parseInt(dealtCards[0].card + dealtCards[1].card);
-
-    betOutput(bet);
+    guidance("Click Hit or Stand to continue");
+    scoreDisplay("You have currently bet $" + bet + " and have " + gameScore + " points on the table");           
+    betOutput()} else {
+    document.getElementById("play").disabled = false;
+    return bet;
+    }    
   }
 
 
- function validate_bet(bet){
+ function validate_bet(bet){                                   // chequeamos la validez de la apuesta para evitar resultados no deseados
 
     let newBetTotal = funds - bet;
 
@@ -177,32 +201,51 @@ function tableCard() { // funcion que agrega una carta en el HTML
       alert("Place valid bet");
       startGame();      
 
-    } else if (newBetTotal <= 0) {      
-      alert("Funds insufficient");
-      placeFunds();             
+    } else if (newBetTotal < 0) {      
+      alert("Funds insufficient");                  
 
     } else {
-    funds = newBetTotal
-    document.getElementById("funds").innerHTML = " ";
-    document.getElementById("funds").innerHTML = "You have $" + funds + " to play";
-    return bet; 
-
+    funds = newBetTotal    
+    localStorage.setItem('localPlayer', funds);    
+    fundsDisplay("You have $" + funds + " to play");  
+    return bet;  
       }
     };
 
-function betOutput(bet) {
-
-    if(!isNaN(bet) || bet){
-
-        alert("You've been dealt "+ dealtCards[0].suit + " " + dealtCards[1].suit +
-         "You have bet $" + bet + " and you scored " + gameScore + " points. Click Hit or Stand to continue");
+function betOutput() {                                        // se habilitan los botones de la segunda fase del juego y se devuelve el monto de la apuesta para que este disponible
          document.getElementById("hit").disabled = false;  
-         document.getElementById("stand").disabled = false;  
-         }
+         document.getElementById("stand").disabled = false; 
+         document.getElementById("quit").disabled = false; 
+         return bet;                       
   } 
 
-function finishGame() {   // remueve todas las cartas si el jugador perdio o decidio rendirse (o si gana, en el futuro)
+function finishGame() {   // remueve todas las cartas si el jugador perdio o decidio rendirse (o si gana, en el futuro), resetea el mazo y las manos de jugadores al estado inicial
    
-    while (playerHand.hasChildNodes())
+    while (playerHand.hasChildNodes()) {
     playerHand.removeChild(playerHand.firstChild);
+    deck = [...fullDeck];   
+    dealtCards.length = 0;
+    document.getElementById("quit").disabled = true;
+    gameScore = 0;  
+    bet = 0;  
+    localStorage.setItem('localPlayer', funds);
+    guidance("Click play to start");
+    scoreDisplay("You have currently bet $" + bet + " and have " + gameScore + " points on the table");
+    }
+  }
+
+
+const fundsForm = document.getElementById('fundsForm');
+
+function displayFundsForm(){
+  fundsForm.style.display = 'block';
+}
+
+function hideFundsForm(){
+  fundsForm.style.display = 'none';
+}
+
+function updateFunds(){
+  const funds = document.getElementById('addFundsInput').value;
+  document.getElementById('fundsInput').innerHTML = funds;
 }
