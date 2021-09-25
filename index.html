@@ -7,10 +7,13 @@
         <meta name="author" content="Lucas Nicolussi" />
         <title>Blackjack</title>        
         <link rel="icon" type="image/x-icon" href="assets/ace.png" /> <!-- Icons made by "Good Ware" from https://www.flaticon.com/ -->
+        <!-- All card images belong to its authors, this page is for academic purposes only, source: https://www.pinterest.co.uk/klewski/carts/ -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" 
         integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">        
-        <link href="css/styles.css" rel="stylesheet"/>
-        <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+        <link href="css/styles.css" rel="stylesheet"/>   
+        <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script> 
+        <link rel="preconnect" href="https://fonts.googleapis.com"> <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&display=swap" rel="stylesheet">    
     </head>
     <body>
         <div class="dFlex backgroundStyle" id="wrapper">     
@@ -29,6 +32,7 @@
             <div id="pageContentWrapper">  
                 <div class="gameContainer">
                     <h1>Blackjack!</h1>
+
                     <div><p id="guidance">Click play to start.</p></div>
                     <div class="displayCurrentFunds"><p id="funds"></p></div>
                     <div class="scoreDisplay"><p id="score"></p></div>
@@ -45,6 +49,6 @@
             </div>
         </div>          
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script> 
-        <script src="js/main.js"></script>        
+        <script src="js/main.js"></script>            
     </body>
 </html>

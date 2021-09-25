@@ -1,59 +1,59 @@
  let deck = [
-    { card: 11, suit: 'A♠'},
-    { card: 2, suit: '2♠'},
-    { card: 3, suit: '3♠'},
-    { card: 4, suit: '4♠'},
-    { card: 5, suit: '5♠'},
-    { card: 6, suit: '6♠'},
-    { card: 7, suit: '7♠'},
-    { card: 8, suit: '8♠'},
-    { card: 9, suit: '9♠'},
-    { card: 10, suit: '10♠'},
-    { card: 10, suit: 'J♠'},
-    { card: 10, suit: 'Q♠'},
-    { card: 10, suit: 'K♠'},
+    { card: 11, suit: 'A♠', img: "./assets/11pa.jpg"},
+    { card: 2, suit: '2♠', img: "./assets/2p.jpg"},
+    { card: 3, suit: '3♠', img: "./assets/3p.jpg"},
+    { card: 4, suit: '4♠', img: "./assets/4p.jpg"},
+    { card: 5, suit: '5♠', img: "./assets/5p.jpg"},
+    { card: 6, suit: '6♠', img: "./assets/6p.jpg"},
+    { card: 7, suit: '7♠', img: "./assets/7p.jpg"},
+    { card: 8, suit: '8♠', img: "./assets/8p.jpg"},
+    { card: 9, suit: '9♠', img: "./assets/9p.jpg"},
+    { card: 10, suit: '10♠', img: "./assets/10p.jpg"},
+    { card: 10, suit: 'J♠', img: "./assets/10pj.jpg"},
+    { card: 10, suit: 'Q♠', img: "./assets/10pq.jpg"},
+    { card: 10, suit: 'K♠', img: "./assets/10pk.jpg"},
    
-    { card: 11, suit: 'A♥'},
-    { card: 2, suit: '2♥'},
-    { card: 3, suit: '3♥'},
-    { card: 4, suit: '4♥'},
-    { card: 5, suit: '5♥'},
-    { card: 6, suit: '6♥'},
-    { card: 7, suit: '7♥'},
-    { card: 8, suit: '8♥'},
-    { card: 9, suit: '9♥'},
-    { card: 10, suit: '10♥'},
-    { card: 10, suit: 'J♥'},
-    { card: 10, suit: 'Q♥'},
-    { card: 10, suit: 'K♥'},
+    { card: 11, suit: 'A♥', img: "./assets/11ca.jpg"},
+    { card: 2, suit: '2♥', img: "./assets/2c.jpg"},
+    { card: 3, suit: '3♥', img: "./assets/3c.jpg"},
+    { card: 4, suit: '4♥', img: "./assets/4c.jpg"},
+    { card: 5, suit: '5♥', img: "./assets/5c.jpg"},
+    { card: 6, suit: '6♥', img: "./assets/6c.jpg"},
+    { card: 7, suit: '7♥', img: "./assets/7c.jpg"},
+    { card: 8, suit: '8♥', img: "./assets/8c.jpg"},
+    { card: 9, suit: '9♥', img: "./assets/9c.jpg"},
+    { card: 10, suit: '10♥', img: "./assets/10c.jpg"},
+    { card: 10, suit: 'J♥', img: "./assets/10cj.jpg"},
+    { card: 10, suit: 'Q♥', img: "./assets/10cq.jpg"},
+    { card: 10, suit: 'K♥', img: "./assets/10ck.jpg"},
       
-    { card: 11, suit: 'A♦'},
-    { card: 2, suit: '2♦'},
-    { card: 3, suit: '3♦'},
-    { card: 4, suit: '4♦'},
-    { card: 5, suit: '5♦'},
-    { card: 6, suit: '6♦'},
-    { card: 7, suit: '7♦'},
-    { card: 8, suit: '8♦'},
-    { card: 9, suit: '9♦'},
-    { card: 10, suit: '10♦'},
-    { card: 10, suit: 'J♦'},
-    { card: 10, suit: 'Q♦'},
-    { card: 10, suit: 'K♦'},
+    { card: 11, suit: 'A♦', img: "./assets/11da.jpg"},
+    { card: 2, suit: '2♦', img: "./assets/2d.jpg"},
+    { card: 3, suit: '3♦', img: "./assets/3d.jpg"},
+    { card: 4, suit: '4♦', img: "./assets/4d.jpg"},
+    { card: 5, suit: '5♦', img: "./assets/5d.jpg"},
+    { card: 6, suit: '6♦', img: "./assets/6d.jpg"},
+    { card: 7, suit: '7♦', img: "./assets/7d.jpg"},
+    { card: 8, suit: '8♦', img: "./assets/8d.jpg"},
+    { card: 9, suit: '9♦', img: "./assets/9d.jpg"},
+    { card: 10, suit: '10♦', img: "./assets/10d.jpg"},
+    { card: 10, suit: 'J♦', img: "./assets/10dj.jpg"},
+    { card: 10, suit: 'Q♦', img: "./assets/10dq.jpg"},
+    { card: 10, suit: 'K♦', img: "./assets/10dk.jpg"},
 
-    { card: 11, suit: 'A♣'},
-    { card: 2, suit: '2♣'},
-    { card: 3, suit: '3♣'},
-    { card: 4, suit: '4♣'},
-    { card: 5, suit: '5♣'},
-    { card: 6, suit: '6♣'},
-    { card: 7, suit: '7♣'},
-    { card: 8, suit: '8♣'},
-    { card: 9, suit: '9♣'},
-    { card: 10, suit: '10♣'},
-    { card: 10, suit: 'J♣'},
-    { card: 10, suit: 'Q♣'},
-    { card: 10, suit: 'K♣'},
+    { card: 11, suit: 'A♣', img: "./assets/11ta.jpg"},
+    { card: 2, suit: '2♣', img: "./assets/2t.jpg"},
+    { card: 3, suit: '3♣', img: "./assets/3t.jpg"},
+    { card: 4, suit: '4♣', img: "./assets/4t.jpg"},
+    { card: 5, suit: '5♣', img: "./assets/5t.jpg"},
+    { card: 6, suit: '6♣', img: "./assets/6t.jpg"},
+    { card: 7, suit: '7♣', img: "./assets/7t.jpg"},
+    { card: 8, suit: '8♣', img: "./assets/8t.jpg"},
+    { card: 9, suit: '9♣', img: "./assets/9t.jpg"},
+    { card: 10, suit: '10♣', img: "./assets/10t.jpg"},
+    { card: 10, suit: 'J♣', img: "./assets/10tj.jpg"},
+    { card: 10, suit: 'Q♣', img: "./assets/10tq.jpg"},
+    { card: 10, suit: 'K♣', img: "./assets/10tk.jpg"},
   ];
   
 const fullDeck = [...deck]; // use spread operator para mantener un mazo inalterado al cual volver una vez finalizado el juego y luego copiar las cartas deck = [...fullDeck];
@@ -65,16 +65,20 @@ let selectedCard;
 let localPlayer = '{"player": "localPlayer", "money": 0}';
 let funds = 0;
 const savedFunds = parseInt(localStorage.getItem('localPlayer'));
+let newBetTotal = 0;
+let safety = false;
 
 if (savedFunds && !isNaN(savedFunds)){
   funds = savedFunds;
-}
+};
 
-let safety = false;
+let fundsDisplayE = document.querySelector("#funds");
+let scoreDisplayE = document.querySelector("#score");
+let guidanceE = document.querySelector("#guidance");
 
-function fundsDisplay(msg) { document.getElementById("funds").innerHTML = msg; };
-function scoreDisplay(msg) { document.getElementById("score").innerHTML = msg; };
-function guidance(msg) { document.getElementById("guidance").innerHTML = msg; };
+function fundsDisplay(msg) { fundsDisplayE.innerHTML = msg; };
+function scoreDisplay(msg) { scoreDisplayE.innerHTML = msg; };
+function guidance(msg) { guidanceE.innerHTML = msg; };
 
 localPlayerFunds = JSON.parse(localPlayer);             // el jugador no pierde sus fondos al refrescar la pagina despues de usar la funcion placeFunds                               
 
@@ -82,19 +86,19 @@ fundsDisplay("You have $" + funds + " to play");
 scoreDisplay("You have currently bet $" + bet + " and have " + gameScore + " points on the table");
 
 // EVENTOS DEL JUEGO : Habilitar o deshabilitar las opciones es esencial para hacer respetar las reglas del juego, al principio, solo se puede depositar fondos y empezar un juego.
-document.getElementById("hit").disabled = true;
-document.getElementById("stand").disabled = true;
-document.getElementById("quit").disabled = true;
-document.getElementById("play").disabled = false;
+$("#hit").prop("disabled", true);
+$("#stand").prop("disabled", true);
+$("#quit").prop("disabled", true);
+$("#play").prop("disabled", false);
 
-let play = document.getElementById("play"); // empezamos el juego de forma ordenada
+let play = document.querySelector("#play");; // empezamos el juego de forma ordenada
 play.addEventListener('click', () => {
 finishGame();
 startGame();
 });   
 
 
-let hit = document.getElementById("hit");  // hit permite pedir una carta al azar adicional
+let hit = document.querySelector("#hit");  // hit permite pedir una carta al azar adicional
 hit.addEventListener('click', () => {  
   selectedCard = dealRandomCard();    // la carta se reparte y sale del array del mazo para no repetirse, cada carta es unica y no queremos hacer trampa
   dealtCards.push(selectedCard); 
@@ -107,35 +111,60 @@ hit.addEventListener('click', () => {
     // si el jugador pierde, ya no puede continuar tocando las teclas de juego, pero puede iniciar uno nuevo
     scoreDisplay("You've been dealt "+ dealtCards[dealtCards.length - 1].suit + " you have thus " + gameScore + " points on the table and you busted! bet lost!");
     guidance("Click play to start");
-    document.getElementById("hit").disabled = true;  
-    document.getElementById("stand").disabled  = true;     
-    document.getElementById("play").disabled  = false;
-    document.getElementById("quit").disabled  = true;
+    outOfGame()
   }
   });
 
 
-let stand = document.getElementById("stand");  // stand significa que no me pase de 21 y decido jugar mi suerte con el puntaje que ya tengo
+let stand = document.querySelector("#stand");  // stand significa que no me pase de 21 y decido jugar mi suerte con el puntaje que ya tengo
 stand.addEventListener('click', () => {
 guidance("You stand against the House!");
-document.getElementById("hit").disabled  = true;  
-document.getElementById("stand").disabled  = true;  
-document.getElementById("play").disabled = true; // temporalmente deshabilito esto para evitar bugs, en el futuro incorporare la jugada del CPU posterior al standing
+outOfGame()
+$("#quit").prop("disabled", false);         // temporalmente deshabilito esto para evitar bugs, en el futuro incorporare la jugada del CPU posterior al standing
 });   
 
 
-let quit = document.getElementById("quit");  
+let quit = document.querySelector("#quit");  
 quit.addEventListener('click', () => {
 let safety = confirm("Do you wish to quit? you will lose your bets");
 if (safety) {
-document.getElementById("hit").disabled = true;  
-document.getElementById("stand").disabled = true;
-document.getElementById("play").disabled = false;
+  outOfGame();
+  $("#play").prop("disabled", false); 
 finishGame(); }
 });  
 
-
 // FUNCIONES 
+
+function placeFunds(){                                 // muestra de forma dinamica y en tiempo real cuanto dinero virtual posee el jugador, es el primer paso, sin fondos no se puede jugar
+   
+  inputFunds = parseInt(prompt("How much do you wish to add to your account?"));
+  
+  if( (inputFunds == "") || isNaN(inputFunds) || (inputFunds <= 0) ) {
+
+    fundsDisplay(" ");
+    fundsDisplay("Place valid funds and try again");         
+
+} else {    
+funds += inputFunds   
+localStorage.setItem('localPlayer', funds);
+fundsDisplay(" ");
+fundsDisplay("You have $" + funds + " to play");  
+
+  }
+};
+
+function outOfGame() {                                // agrupamos la desactivacion de botones cuando el juego no esta iniciado o termino
+  $("#hit").prop("disabled", true);
+  $("#stand").prop("disabled", true);
+  $("#quit").prop("disabled", true);
+  $("#play").prop("disabled", false);
+}
+
+function onGame() {                                        // se habilitan los botones de la segunda fase del juego posterior a las apuestas
+  $("#hit").prop("disabled", false);           
+  $("#stand").prop("disabled", false); 
+  $("#quit").prop ("disabled", false);                               
+} 
 
 function dealRandomCard() {                           // funcion para elegir una carta al azar, reutilizable
   const index = Math.floor(Math.random() * deck.length);
@@ -144,36 +173,20 @@ function dealRandomCard() {                           // funcion para elegir una
   return selectedCard;
 }
 
+
 function tableCard() {                                  // funcion que agrega una carta visible en el HTML
-  let card = document.createElement('div');
-  card.classList.add('hand');
-  let card1 = playerHand.appendChild(card);
-  card1.textContent = dealtCards[dealtCards.length - 1].suit; 
+    
+    $('#playerHand').prepend(`<img src="${dealtCards[dealtCards.length - 1].img}">`); 
+    /* Necesito animar esta parte y no estoy pudiendo ni con slidedown, ni con fadein (porque por mas que haga invisible el Div, si ya hay cartas ya es visible)*/ /////////////////////////////////////////////
+  
 }
-
- function placeFunds(){                                 // muestra de forma dinamica y en tiempo real cuanto dinero virtual posee el jugador
-   
-      inputFunds = parseInt(prompt("How much do you wish to add to your account?"));
-      
-      if( (inputFunds == "") || isNaN(inputFunds) || (inputFunds <= 0) ) {
-
-      alert("Place valid funds");         
-
-    } else {    
-    funds += inputFunds   
-    localStorage.setItem('localPlayer', funds);
-    fundsDisplay(" ");
-    fundsDisplay("You have $" + funds + " to play");  
-
-      }
-    };
 
  function startGame() {
 
-    bet = parseInt(validate_bet(prompt("Set your bet")));    
+    bet = validate_bet(prompt("Set your bet"));    
      
     if (!isNaN(bet) && (funds >= 0)) {
-    document.getElementById("play").disabled = true; 
+    $("#play").prop("disabled", true); 
     let selectedCard = dealRandomCard();                         //obtenemos la nueva carta
     dealtCards.push(selectedCard);                              //agregamos la carta al array de cartas repartidas
     tableCard();    
@@ -185,26 +198,24 @@ function tableCard() {                                  // funcion que agrega un
     gameScore = parseInt(dealtCards[0].card + dealtCards[1].card);
     guidance("Click Hit or Stand to continue");
     scoreDisplay("You have currently bet $" + bet + " and have " + gameScore + " points on the table");           
-    betOutput()} else {
-    document.getElementById("play").disabled = false;
+    onGame()} else {
+    $("#play").prop("disabled", false);
     return bet;
     }    
   }
 
-
- function validate_bet(bet){                                   // chequeamos la validez de la apuesta para evitar resultados no deseados
-
-    let newBetTotal = funds - bet;
+ function validate_bet(bet){                                   // chequeamos la validez de la apuesta para evitar resultados no deseados    
 
     if( (bet == "") || (isNaN(bet)) ) {
 
-      alert("Place valid bet");
+      guidance("Place valid bet");
       startGame();      
 
     } else if (newBetTotal < 0) {      
-      alert("Funds insufficient");                  
+      guidance("Funds insufficient, place more funds and try again");                  
 
     } else {
+    newBetTotal = funds - parseInt(bet);
     funds = newBetTotal    
     localStorage.setItem('localPlayer', funds);    
     fundsDisplay("You have $" + funds + " to play");  
@@ -212,20 +223,14 @@ function tableCard() {                                  // funcion que agrega un
       }
     };
 
-function betOutput() {                                        // se habilitan los botones de la segunda fase del juego y se devuelve el monto de la apuesta para que este disponible
-         document.getElementById("hit").disabled = false;  
-         document.getElementById("stand").disabled = false; 
-         document.getElementById("quit").disabled = false; 
-         return bet;                       
-  } 
-
 function finishGame() {   // remueve todas las cartas si el jugador perdio o decidio rendirse (o si gana, en el futuro), resetea el mazo y las manos de jugadores al estado inicial
    
-    while (playerHand.hasChildNodes()) {
-    playerHand.removeChild(playerHand.firstChild);
+    while ( $('#playerHand').children().length > 0 ) { //(playerHand.hasChildNodes()) {
+    //playerHand.removeChild(playerHand.firstChild);
+    $('#playerHand img').hide('slow').remove();
     deck = [...fullDeck];   
-    dealtCards.length = 0;
-    document.getElementById("quit").disabled = true;
+    dealtCards.length = [];
+    outOfGame(); 
     gameScore = 0;  
     bet = 0;  
     localStorage.setItem('localPlayer', funds);
@@ -234,18 +239,3 @@ function finishGame() {   // remueve todas las cartas si el jugador perdio o dec
     }
   }
 
-
-const fundsForm = document.getElementById('fundsForm');
-
-function displayFundsForm(){
-  fundsForm.style.display = 'block';
-}
-
-function hideFundsForm(){
-  fundsForm.style.display = 'none';
-}
-
-function updateFunds(){
-  const funds = document.getElementById('addFundsInput').value;
-  document.getElementById('fundsInput').innerHTML = funds;
-}
