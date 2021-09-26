@@ -224,7 +224,7 @@ localPlayerFunds = JSON.parse(localPlayer);             // el jugador no pierde 
 
         bet = parseInt(validate_bet(prompt("Set your bet")));
         
-        if (playerHand.hasChildNodes()) {
+        if ((playerHand.hasChildNodes()) && (cpuHand.hasChildNodes())) {
           $('#playerHand').empty();
           $('#cpuHand').empty();
         }
@@ -251,8 +251,7 @@ localPlayerFunds = JSON.parse(localPlayer);             // el jugador no pierde 
 
     function validate_bet(bet){                                   // chequeamos la validez de la apuesta para evitar resultados no deseados    
         
-        console.log(typeof bet);
-        if( (bet == "") || (isNaN(bet)) || (!bet)) {
+                if( (bet == "") || (isNaN(bet)) || (!bet)) {
 
           guidance("Place valid bet"); 
           scoreDisplay("")            
