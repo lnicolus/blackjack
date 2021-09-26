@@ -122,7 +122,7 @@ localPlayerFunds = JSON.parse(localPlayer);             // el jugador no pierde 
     outOfGame()
     $("#quit").prop("disabled", false);         // temporalmente deshabilito esto para evitar bugs, en el futuro incorporare la jugada del CPU posterior al standing
 
-    while (cpuGameScore < 17){
+    while (cpuGameScore < 17){      
       computerDeal();
     }
 
@@ -137,11 +137,13 @@ localPlayerFunds = JSON.parse(localPlayer);             // el jugador no pierde 
       funds = funds + (bet*2);
       localStorage.setItem('localPlayer', funds);
       fundsDisplay(" ");
-      fundsDisplay("You have $" + funds + " to play");  
+      fundsDisplay("You have $" + funds + " to play"); 
+      cpuGameScore = 0; 
       return funds;
     } else if ((cpuGameScore < 21) && (cpuGameScore > gameScore)) {
       fundsDisplay(" ");
       scoreDisplay("The House has "+ cpuGameScore + " points and You've "+ gameScore + " points, you lost the bet");
+      cpuGameScore = 0; 
       return funds;
     };
 
@@ -274,7 +276,8 @@ localPlayerFunds = JSON.parse(localPlayer);             // el jugador no pierde 
         dealtCards.length = [];
         cpuDealtCards.length = [];
         outOfGame(); 
-        gameScore = 0;  
+        gameScore = 0; 
+        cpuGameScore = 0; 
         bet = 0;  
         localStorage.setItem('localPlayer', funds);
         guidance("Click play to start");
