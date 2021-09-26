@@ -23,6 +23,10 @@
   font-size: 1.5rem;
 }
 
+.position {
+  position: relative;
+}
+
 #sidebarWrapper {
   min-height: 100vh;
   margin-left: 0;
@@ -105,8 +109,12 @@
 }
 
 #playerHand {
-  /*display: none;*/
-  margin-top: 7%;
+  margin-top: 1%;
+
+}
+
+#cpuHand {
+  margin-top: 1.5%;
 
 }
 
