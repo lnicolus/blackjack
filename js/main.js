@@ -120,13 +120,14 @@ localPlayerFunds = JSON.parse(localPlayer);             // el jugador no pierde 
     stand.addEventListener('click', () => {
     guidance("You stand against the House!");
     outOfGame()
-    $("#quit").prop("disabled", false);         // temporalmente deshabilito esto para evitar bugs, en el futuro incorporare la jugada del CPU posterior al standing
+    $("#quit").prop("disabled", false);        
+     // la jugada de la computadora esta encerrada en el evento de Stand, el unico en el que juega, ahi se define si el jugador puede ganar el doble de lo que aposto
 
-    while (cpuGameScore < 17){      
+    while (cpuGameScore < 17){      // siempre que la computadora tenga menos de 17 puntos totales, pedira una carta adicional
       computerDeal();
     }
 
-    if (cpuGameScore >= 17) {
+    if (cpuGameScore >= 17) {       // cuando tenga 17 puntos o mas, se verifica quien gano
       closeGame();
     }
 
@@ -148,14 +149,7 @@ localPlayerFunds = JSON.parse(localPlayer);             // el jugador no pierde 
     };
 
   }
-
-    function computerDeal () {selectedCard = dealRandomCard();
-    cpuDealtCards.push(selectedCard);
-    cpuGameScore = cpuGameScore + cpuDealtCards[cpuDealtCards.length - 1].card;
-    cpuTableCard();}
-
     });   
-
 
     let quit = document.querySelector("#quit");  
     quit.addEventListener('click', () => {
@@ -228,7 +222,7 @@ localPlayerFunds = JSON.parse(localPlayer);             // el jugador no pierde 
           $('#playerHand').empty();
           $('#cpuHand').empty();
         }
-        
+
         if (!isNaN(bet) && (funds >= 0) && (bet >= 0)) {
         $("#play").prop("disabled", true); 
         let selectedCard = dealRandomCard();                         //obtenemos la nueva carta
@@ -251,7 +245,7 @@ localPlayerFunds = JSON.parse(localPlayer);             // el jugador no pierde 
 
     function validate_bet(bet){                                   // chequeamos la validez de la apuesta para evitar resultados no deseados    
         
-                if( (bet == "") || (isNaN(bet)) || (!bet)) {
+          if( (bet == "") || (isNaN(bet)) || (!bet) || (bet <= 0)) {
 
           guidance("Place valid bet"); 
           scoreDisplay("")            
@@ -270,6 +264,7 @@ localPlayerFunds = JSON.parse(localPlayer);             // el jugador no pierde 
         };
 
     function finishGame() {   // remueve todas las cartas si el jugador perdio o decidio rendirse (o si gana, en el futuro), resetea el mazo y las manos de jugadores al estado inicial
+
         clearTableAnimation();
         deck = [...fullDeck];   
         dealtCards.length = [];
@@ -284,7 +279,8 @@ localPlayerFunds = JSON.parse(localPlayer);             // el jugador no pierde 
         scoreDisplay("You have currently bet $" + bet + " and have " + gameScore + " points on the table");
         }
 
-    function clearTableAnimation(){
+    function clearTableAnimation(){     // animo la remocion de cartas tras terminado el juego, a su vez removiendo los elementos del DOM en concatenacion
+
       $('#playerHand img').animate({  
         left:'550px',
         opacity:'0.5'    
@@ -302,4 +298,12 @@ localPlayerFunds = JSON.parse(localPlayer);             // el jugador no pierde 
           function(){        
               $('#cpuHand img').remove();
           });
+    }
+
+    function computerDeal(){
+      
+      selectedCard = dealRandomCard();                  // es un calco de la funcion que da cartas al jugador, pero el array es otro
+      cpuDealtCards.push(selectedCard);
+      cpuGameScore = cpuGameScore + cpuDealtCards[cpuDealtCards.length - 1].card;
+      cpuTableCard();
     }
