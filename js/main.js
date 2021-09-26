@@ -93,7 +93,7 @@ localPlayerFunds = JSON.parse(localPlayer);             // el jugador no pierde 
     $("#quit").prop("disabled", true);
     $("#play").prop("disabled", false);
 
-    let play = document.querySelector("#play");; // empezamos el juego de forma ordenada
+    let play = document.querySelector("#play"); // empezamos el juego de forma ordenada
     play.addEventListener('click', () => {      
     startGame();
     });   
@@ -134,6 +134,7 @@ localPlayerFunds = JSON.parse(localPlayer);             // el jugador no pierde 
     function closeGame(){
 
     if ((cpuGameScore > 21) || (cpuGameScore < gameScore)) {
+
       scoreDisplay("The House has "+ cpuGameScore + " points and You've "+ gameScore + " points, you WON!");
       funds = funds + (bet*2);
       localStorage.setItem('localPlayer', funds);
@@ -143,6 +144,7 @@ localPlayerFunds = JSON.parse(localPlayer);             // el jugador no pierde 
       return funds;
     } else if ((cpuGameScore < 21) && (cpuGameScore > gameScore)) {
       fundsDisplay(" ");
+      fundsDisplay("You have $" + funds + " to play"); 
       scoreDisplay("The House has "+ cpuGameScore + " points and You've "+ gameScore + " points, you lost the bet");
       cpuGameScore = 0; 
       return funds;
@@ -218,7 +220,7 @@ localPlayerFunds = JSON.parse(localPlayer);             // el jugador no pierde 
 
         bet = parseInt(validate_bet(prompt("Set your bet")));
         
-        if ((playerHand.hasChildNodes()) && (cpuHand.hasChildNodes())) {
+        if ((playerHand.hasChildNodes()) || (cpuHand.hasChildNodes())) {
           $('#playerHand').empty();
           $('#cpuHand').empty();
         }
