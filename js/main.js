@@ -33,8 +33,7 @@
    guidanceE.innerHTML = msg;
  };                     
 
- fundsDisplay("You have $" + funds + " to play");
- scoreDisplay("You have currently bet $" + bet + " and have " + gameScore + " points on the table");
+ fundsDisplay("You have $" + funds + " to play"); 
 
  // EVENTOS DEL JUEGO : Habilitar o deshabilitar las opciones es esencial para hacer respetar las reglas del juego, al principio, solo se puede depositar fondos y empezar un juego.
  $("#hit").prop("disabled", true);
@@ -191,8 +190,7 @@
 
    bet = parseInt(validate_bet(prompt("Set your bet")));
 
-   if (playerHand.hasChildNodes() || botHand.hasChildNodes()) {  
-     console.log('hi');
+   if (playerHand.hasChildNodes() || botHand.hasChildNodes()) {       
      $('#playerHand').empty();
      $('#botHand').empty();
      clearScores();
@@ -201,8 +199,7 @@
      botDealtCards = [];
    }
 
-   if (!isNaN(bet) && funds >= 0 && bet >= 0) {
-     console.log('if2', {gameScore});
+   if (!isNaN(bet) && funds >= 0 && bet >= 0) {     
      $("#play").prop("disabled", true);
      let selectedCard = dealRandomCard(); //obtenemos la nueva carta
      dealtCards.push(selectedCard); //agregamos la carta al array de cartas repartidas
@@ -212,8 +209,7 @@
      dealtCards.push(selectedCard);
      tableCard();
 
-     gameScore += dealtCards[0].card + dealtCards[1].card;
-     console.log('ver gamescore', {gameScore, dealtCards});     
+     gameScore += dealtCards[0].card + dealtCards[1].card;         
      guidance("Click Hit or Stand to continue");
      scoreDisplay("You have currently bet $" + bet + " and have " + gameScore + " points on the table");
      onGame();
@@ -256,7 +252,7 @@
    localStorage.setItem('localPlayer', funds);
    guidance("Click play to start");
    fundsDisplay("You have $" + funds + " to play");
-   scoreDisplay("You have currently bet $" + bet + " and have " + gameScore + " points on the table");
+   scoreDisplay("You have currently bet $" + bet + " and have " + gameScore + " points on the table");  
  }
 
  function clearTableAnimation() { // animo la remocion de cartas tras terminado el juego, a su vez removiendo los elementos del DOM en concatenacion
@@ -268,6 +264,7 @@
      "slow",
      function () {
        $('#playerHand img').remove();
+       cleanScreen();
      });
 
    $('#botHand img').animate({
@@ -276,8 +273,9 @@
      },
      "slow",
      function () {
-       $('#botHand img').remove();
-     });
+       $('#botHand img').remove(); 
+       cleanScreen();
+     });     
  }
 
  function computerDeal() {
@@ -295,8 +293,7 @@
 
  function clearScores() {
   gameScore = 0;
-  botGameScore = 0;
-  console.log(gameScore);
+  botGameScore = 0;  
  }
 
 function updateFunds(){  
@@ -322,6 +319,7 @@ $(document).ready(function () {
   $("#load").click(function () {
     $("#list").empty();
     $("#loader").show();
+    $("#load").prop("disabled", true);
     $.ajax("https://jsonplaceholder.typicode.com/users").done(function (users) {
       $("#loader").hide();
       $("#reload").show();
@@ -335,5 +333,11 @@ $(document).ready(function () {
     $("#list").empty();
     $("#reload").hide();
     $("#loader").hide();
+    $("#load").prop("disabled", false);
   });
 });
+
+function cleanScreen(){        // deletea el texto que crea el JSON al traer el mazo
+    $('#playerHand').empty();
+    $('#botHand').empty();
+};
