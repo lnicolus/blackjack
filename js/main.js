@@ -1,268 +1,4 @@
- let deck = [{
-     card: 11,
-     suit: 'A♠',
-     img: "./assets/11pa.jpg"
-   },
-   {
-     card: 2,
-     suit: '2♠',
-     img: "./assets/2p.jpg"
-   },
-   {
-     card: 3,
-     suit: '3♠',
-     img: "./assets/3p.jpg"
-   },
-   {
-     card: 4,
-     suit: '4♠',
-     img: "./assets/4p.jpg"
-   },
-   {
-     card: 5,
-     suit: '5♠',
-     img: "./assets/5p.jpg"
-   },
-   {
-     card: 6,
-     suit: '6♠',
-     img: "./assets/6p.jpg"
-   },
-   {
-     card: 7,
-     suit: '7♠',
-     img: "./assets/7p.jpg"
-   },
-   {
-     card: 8,
-     suit: '8♠',
-     img: "./assets/8p.jpg"
-   },
-   {
-     card: 9,
-     suit: '9♠',
-     img: "./assets/9p.jpg"
-   },
-   {
-     card: 10,
-     suit: '10♠',
-     img: "./assets/10p.jpg"
-   },
-   {
-     card: 10,
-     suit: 'J♠',
-     img: "./assets/10pj.jpg"
-   },
-   {
-     card: 10,
-     suit: 'Q♠',
-     img: "./assets/10pq.jpg"
-   },
-   {
-     card: 10,
-     suit: 'K♠',
-     img: "./assets/10pk.jpg"
-   },
-
-   {
-     card: 11,
-     suit: 'A♥',
-     img: "./assets/11ca.jpg"
-   },
-   {
-     card: 2,
-     suit: '2♥',
-     img: "./assets/2c.jpg"
-   },
-   {
-     card: 3,
-     suit: '3♥',
-     img: "./assets/3c.jpg"
-   },
-   {
-     card: 4,
-     suit: '4♥',
-     img: "./assets/4c.jpg"
-   },
-   {
-     card: 5,
-     suit: '5♥',
-     img: "./assets/5c.jpg"
-   },
-   {
-     card: 6,
-     suit: '6♥',
-     img: "./assets/6c.jpg"
-   },
-   {
-     card: 7,
-     suit: '7♥',
-     img: "./assets/7c.jpg"
-   },
-   {
-     card: 8,
-     suit: '8♥',
-     img: "./assets/8c.jpg"
-   },
-   {
-     card: 9,
-     suit: '9♥',
-     img: "./assets/9c.jpg"
-   },
-   {
-     card: 10,
-     suit: '10♥',
-     img: "./assets/10c.jpg"
-   },
-   {
-     card: 10,
-     suit: 'J♥',
-     img: "./assets/10cj.jpg"
-   },
-   {
-     card: 10,
-     suit: 'Q♥',
-     img: "./assets/10cq.jpg"
-   },
-   {
-     card: 10,
-     suit: 'K♥',
-     img: "./assets/10ck.jpg"
-   },
-
-   {
-     card: 11,
-     suit: 'A♦',
-     img: "./assets/11da.jpg"
-   },
-   {
-     card: 2,
-     suit: '2♦',
-     img: "./assets/2d.jpg"
-   },
-   {
-     card: 3,
-     suit: '3♦',
-     img: "./assets/3d.jpg"
-   },
-   {
-     card: 4,
-     suit: '4♦',
-     img: "./assets/4d.jpg"
-   },
-   {
-     card: 5,
-     suit: '5♦',
-     img: "./assets/5d.jpg"
-   },
-   {
-     card: 6,
-     suit: '6♦',
-     img: "./assets/6d.jpg"
-   },
-   {
-     card: 7,
-     suit: '7♦',
-     img: "./assets/7d.jpg"
-   },
-   {
-     card: 8,
-     suit: '8♦',
-     img: "./assets/8d.jpg"
-   },
-   {
-     card: 9,
-     suit: '9♦',
-     img: "./assets/9d.jpg"
-   },
-   {
-     card: 10,
-     suit: '10♦',
-     img: "./assets/10d.jpg"
-   },
-   {
-     card: 10,
-     suit: 'J♦',
-     img: "./assets/10dj.jpg"
-   },
-   {
-     card: 10,
-     suit: 'Q♦',
-     img: "./assets/10dq.jpg"
-   },
-   {
-     card: 10,
-     suit: 'K♦',
-     img: "./assets/10dk.jpg"
-   },
-
-   {
-     card: 11,
-     suit: 'A♣',
-     img: "./assets/11ta.jpg"
-   },
-   {
-     card: 2,
-     suit: '2♣',
-     img: "./assets/2t.jpg"
-   },
-   {
-     card: 3,
-     suit: '3♣',
-     img: "./assets/3t.jpg"
-   },
-   {
-     card: 4,
-     suit: '4♣',
-     img: "./assets/4t.jpg"
-   },
-   {
-     card: 5,
-     suit: '5♣',
-     img: "./assets/5t.jpg"
-   },
-   {
-     card: 6,
-     suit: '6♣',
-     img: "./assets/6t.jpg"
-   },
-   {
-     card: 7,
-     suit: '7♣',
-     img: "./assets/7t.jpg"
-   },
-   {
-     card: 8,
-     suit: '8♣',
-     img: "./assets/8t.jpg"
-   },
-   {
-     card: 9,
-     suit: '9♣',
-     img: "./assets/9t.jpg"
-   },
-   {
-     card: 10,
-     suit: '10♣',
-     img: "./assets/10t.jpg"
-   },
-   {
-     card: 10,
-     suit: 'J♣',
-     img: "./assets/10tj.jpg"
-   },
-   {
-     card: 10,
-     suit: 'Q♣',
-     img: "./assets/10tq.jpg"
-   },
-   {
-     card: 10,
-     suit: 'K♣',
-     img: "./assets/10tk.jpg"
-   },
- ];
-
+ let deck =[];
  const fullDeck = [...deck]; // use spread operator para mantener un mazo inalterado al cual volver una vez finalizado el juego y luego copiar las cartas deck = [...fullDeck];
  let dealtCards = []; // aca guardamos las cartas que ya se repartieron. Serán necesarios 2 arrays: uno para la maquina y otro para el jugador
  let botDealtCards = [];
@@ -274,9 +10,10 @@
  let funds = 0;
  const savedFunds = parseInt(localStorage.getItem('localPlayer'));
  let newBetTotal = 0;
- let safety = false;
+ const safety = false;
+ const fundsForm = document.querySelector('#fundsForm');
 
- if (savedFunds && !isNaN(savedFunds) && (savedFunds > 0)) {
+ if (savedFunds && !isNaN(savedFunds)) {
    funds = savedFunds;
  };
 
@@ -294,10 +31,7 @@
 
  function guidance(msg) {
    guidanceE.innerHTML = msg;
- };
-
- localPlayerFunds = JSON.parse(localPlayer); // el jugador no pierde sus fondos al refrescar la pagina despues de usar la funcion placeFunds                               
-
+ };                     
 
  fundsDisplay("You have $" + funds + " to play");
  scoreDisplay("You have currently bet $" + bet + " and have " + gameScore + " points on the table");
@@ -308,17 +42,17 @@
  $("#quit").prop("disabled", true);
  $("#play").prop("disabled", false);
 
- let play = document.querySelector("#play"); // empezamos el juego de forma ordenada
- play.addEventListener('click', () => {
+ const play = document.querySelector("#play"); // empezamos el juego de forma ordenada
+ $("#play").bind('click', () => {
    startGame();
  });
 
 
- let hit = document.querySelector("#hit"); // hit permite pedir una carta al azar adicional
- hit.addEventListener('click', () => {
+ const hit = document.querySelector("#hit"); // hit permite pedir una carta al azar adicional
+ $("#hit").bind('click', () => {
    selectedCard = dealRandomCard(); // la carta se reparte y sale del array del mazo para no repetirse, cada carta es unica y no queremos hacer trampa
    dealtCards.push(selectedCard);
-   gameScore = gameScore + dealtCards[dealtCards.length - 1].card;   
+   gameScore = gameScore + selectedCard.card;   
    scoreDisplay("You have currently bet $" + bet + " and have " + gameScore + " points on the table");
    tableCard();
 
@@ -331,8 +65,8 @@
  });
 
 
- let stand = document.querySelector("#stand"); // stand significa que no me pase de 21 y decido jugar mi suerte con el puntaje que ya tengo
- stand.addEventListener('click', () => {
+ const stand = document.querySelector("#stand"); // stand significa que no me pase de 21 y decido jugar mi suerte con el puntaje que ya tengo
+ $("#stand").bind('click', () => {
    guidance("You stand against the House!");
    outOfGame();
    $("#quit").prop("disabled", false);
@@ -346,32 +80,45 @@
      closeGame();
    }
 
-   function closeGame() {
+   function closeGame() { 
 
      if ((botGameScore > 21) || (botGameScore < gameScore)) {
 
        scoreDisplay("The House has " + botGameScore + " points and You've " + gameScore + " points, you WON!");
        funds = funds + (bet * 2);
-       localStorage.setItem('localPlayer', funds);
-       fundsDisplay(" ");
+       localStorage.setItem('localPlayer', funds);       
        fundsDisplay("You have $" + funds + " to play");
        botGameScore = 0;
        gameScore = 0;
        return funds;
-     } else if ((botGameScore < 21) && (botGameScore > gameScore)) {
-       fundsDisplay(" ");
+     } else if ((botGameScore < 21) && (botGameScore > gameScore)) {       
        fundsDisplay("You have $" + funds + " to play");
        scoreDisplay("The House has " + botGameScore + " points and You've " + gameScore + " points, you lost the bet");
        botGameScore = 0;
        gameScore = 0;
        return funds;
+     } else if ((botGameScore == gameScore)) {            // que sucede si ambos empatan
+      if (botDealtCards[botDealtCards.length - 1].card > dealtCards[dealtCards.length - 1].card){
+        fundsDisplay("You have $" + funds + " to play");
+        scoreDisplay("You tied with the House but the House has the higher last card, thus you lost the bet");
+        botGameScore = 0;
+        gameScore = 0;
+        return funds;
+      } else {
+        fundsDisplay("You have $" + funds + " to play");
+        scoreDisplay("You tied with the House but you have the higher last card, thus you won the bet!");
+        funds = funds + (bet * 2);
+        botGameScore = 0;
+        gameScore = 0;
+        return funds;
+      }
      };
 
    }
  });
 
- let quit = document.querySelector("#quit");
- quit.addEventListener('click', () => {
+ const quit = document.querySelector("#quit");
+ $("#quit").bind('click', () => {
    let safety = confirm("Do you wish to quit? you will lose your bets");
    if (safety) {
      outOfGame();
@@ -382,20 +129,23 @@
 
  // FUNCIONES 
 
- function placeFunds() { // muestra de forma dinamica y en tiempo real cuanto dinero virtual posee el jugador, es el primer paso, sin fondos no se puede jugar
+ function placeFunds(inputFunds) { // muestra de forma dinamica y en tiempo real cuanto dinero virtual posee el jugador, es el primer paso, sin fondos no se puede jugar
+   
+   inputFunds = parseInt(inputFunds);
+   fundsForm.style.display = 'block';
 
-   inputFunds = parseInt(prompt("How much do you wish to add to your account?"));
+   if (isNaN(inputFunds) || inputFunds <= 0) {
 
-   if ((inputFunds == "") || isNaN(inputFunds) || (inputFunds <= 0)) {
-
-     fundsDisplay(" ");
-     fundsDisplay("Place valid funds and try again");
+     
+     fundsDisplay("Place valid funds, \n You have $" + funds + " to play");
 
    } else {
+
      funds += inputFunds
      localStorage.setItem('localPlayer', funds);
-     fundsDisplay(" ");
+    
      fundsDisplay("You have $" + funds + " to play");
+     fundsForm.style.display = 'none';
 
    }
  };
@@ -421,31 +171,38 @@
    return selectedCard;
  }
 
+ function displayCardInTable(target, imgSrc){ // funcion que agrega una carta visible en el HTML, reutilizada abajo para las manos de BOT y PLAYER
+  $(target).prepend(`<img src="${imgSrc}" />}`);
+}
 
  function tableCard() { // funcion que agrega una carta visible en el HTML
-
-   $('#playerHand').append(`<img class="position" src="${dealtCards[dealtCards.length - 1].img}">`);
+ 
+   displayCardInTable('#playerHand', dealtCards[dealtCards.length - 1].img);
    $("#playerHand img:last-child").hide().slideDown("fast");
  }
 
- function botTableCard() { // funcion que agrega una carta visible en el HTML
+ function botTableCard() { 
 
-   $('#botHand').append(`<img class="position" src="${botDealtCards[botDealtCards.length - 1].img}">`);
+   displayCardInTable('#botHand', botDealtCards[botDealtCards.length - 1].img);
    $("#botHand img:last-child").hide().slideDown("fast");
  }
-
+ 
  function startGame() {
 
    bet = parseInt(validate_bet(prompt("Set your bet")));
 
-   if (playerHand.hasChildNodes() || botHand.hasChildNodes()) {
+   if (playerHand.hasChildNodes() || botHand.hasChildNodes()) {  
+     console.log('hi');
      $('#playerHand').empty();
      $('#botHand').empty();
      clearScores();
      updateDisplay();
+     dealtCards = [];
+     botDealtCards = [];
    }
 
-   if (!isNaN(bet) && (funds >= 0) && (bet >= 0)) {
+   if (!isNaN(bet) && funds >= 0 && bet >= 0) {
+     console.log('if2', {gameScore});
      $("#play").prop("disabled", true);
      let selectedCard = dealRandomCard(); //obtenemos la nueva carta
      dealtCards.push(selectedCard); //agregamos la carta al array de cartas repartidas
@@ -456,7 +213,7 @@
      tableCard();
 
      gameScore += dealtCards[0].card + dealtCards[1].card;
-     console.log(gameScore);
+     console.log('ver gamescore', {gameScore, dealtCards});     
      guidance("Click Hit or Stand to continue");
      scoreDisplay("You have currently bet $" + bet + " and have " + gameScore + " points on the table");
      onGame();
@@ -469,7 +226,7 @@
 
  function validate_bet(bet) { // chequeamos la validez de la apuesta para evitar resultados no deseados    
 
-   if ((bet == "") || (isNaN(bet)) || (!bet) || (bet <= 0)) {
+   if (isNaN(bet) || !bet) {
 
      guidance("Place valid bet");
      scoreDisplay("")
@@ -491,8 +248,8 @@
 
    clearTableAnimation();
    deck = [...fullDeck];
-   dealtCards.length = [];
-   botDealtCards.length = [];
+   dealtCards = [];
+   botDealtCards = [];
    outOfGame();
    clearScores();
    bet = 0;
@@ -527,7 +284,7 @@
 
    selectedCard = dealRandomCard(); // es un calco de la funcion que da cartas al jugador, pero el array es otro
    botDealtCards.push(selectedCard);
-   botGameScore = botGameScore + botDealtCards[botDealtCards.length - 1].card;
+   botGameScore = botGameScore + selectedCard.card; 
    botTableCard();
  }
 
@@ -539,4 +296,44 @@
  function clearScores() {
   gameScore = 0;
   botGameScore = 0;
+  console.log(gameScore);
  }
+
+function updateFunds(){  
+  const funds = $('#addFundsInput').val();  
+  placeFunds(funds);  
+};
+
+//Declaramos la url del archivo JSON local
+const URLJSON = "js/deck.json"
+//Escuchamos el evento click del botón agregado
+$(document).ready(function () {
+  $.getJSON(URLJSON, function (respuesta, estado) {
+    if(estado === "success"){
+      deck = respuesta;
+      return deck;}
+});
+});
+
+// solo para el ejercicio de Coder AJAX, traigo una lista de usuarios de un servidor gratuito
+
+$(document).ready(function () {
+  $("#reload").hide();
+  $("#load").click(function () {
+    $("#list").empty();
+    $("#loader").show();
+    $.ajax("https://jsonplaceholder.typicode.com/users").done(function (users) {
+      $("#loader").hide();
+      $("#reload").show();
+      users.forEach(function (user) {
+        $("#list").append(`<li>${user.name}</li>`);
+      });
+    });
+    
+  });
+  $("#reload").click(function () {
+    $("#list").empty();
+    $("#reload").hide();
+    $("#loader").hide();
+  });
+});
