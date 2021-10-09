@@ -264,12 +264,7 @@
      "slow",
      function () {
        $('#playerHand img').remove();
-<<<<<<< HEAD
        $('#playerHand').empty();
-       
-=======
-       cleanScreen();
->>>>>>> 731a72cc4cc7ee42aa58ee5804d0aa9b00f3ea74
      });
 
    $('#botHand img').animate({
@@ -279,11 +274,7 @@
      "slow",
      function () {
        $('#botHand img').remove(); 
-<<<<<<< HEAD
        $('#botHand').empty();
-=======
-       cleanScreen();
->>>>>>> 731a72cc4cc7ee42aa58ee5804d0aa9b00f3ea74
      });     
  }
 
@@ -345,10 +336,3 @@ $(document).ready(function () {
     $("#load").prop("disabled", false);
   });
 });
-
-/*
-function cleanScreen(){        // deletea el texto que crea el JSON al traer el mazo
-    $('#playerHand').empty();
-    $('#botHand').empty();
-};
-*/
