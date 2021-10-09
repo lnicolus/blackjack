@@ -337,7 +337,7 @@ $(document).ready(function () {
   });
 });
 
-function cleanScreen(){        // deletea el texto que crea el JSON al traer el mazo
+function cleanScreen(){        // elimina el texto que crea el JSON al traer el mazo
     $('#playerHand').empty();
     $('#botHand').empty();
 };
