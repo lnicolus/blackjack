@@ -1,19 +1,27 @@
 @charset "UTF-8";
-/*!
-* Start Bootstrap - Simple Sidebar v6.0.3 (https://startbootstrap.com/template/simple-sidebar)
-* Copyright 2013-2021 Start Bootstrap
-* Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-simple-sidebar/blob/master/LICENSE)
-*/
-/*!
- * Bootstrap v5.1.0 (https://getbootstrap.com/)
- * Copyright 2011-2021 The Bootstrap Authors
- * Copyright 2011-2021 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
- */
 
- h1, p, div, button {
+h1, p, div, button {
   font-family: 'Cinzel Decorative';
  }
+
+ .ajax, .ajax button, .ajax div, .ajax ul {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   background-color: black;
+   color: blanchedalmond;   
+ }
+ 
+#fundsForm {
+  display:none;
+  color: black;
+  font-weight: bold;
+  margin-top: 2%;
+}
+
+#botHand {
+  margin-top: 4%;
+}
 
  h1{
    font-size: 6rem;

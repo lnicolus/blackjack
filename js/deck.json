@@ -1,0 +1,264 @@
+[{
+    "card": 11,
+    "suit": "A♠",
+    "img": "./assets/11pa.jpg"
+  },
+  {
+    "card": 2,
+    "suit": "2♠",
+    "img": "./assets/2p.jpg"
+  },
+  {
+    "card": 3,
+    "suit": "3♠",
+    "img": "./assets/3p.jpg"
+  },
+  {
+    "card": 4,
+    "suit": "4♠",
+    "img": "./assets/4p.jpg"
+  },
+  {
+    "card": 5,
+    "suit": "5♠",
+    "img": "./assets/5p.jpg"
+  },
+  {
+    "card": 6,
+    "suit": "6♠",
+    "img": "./assets/6p.jpg"
+  },
+  {
+    "card": 7,
+    "suit": "7♠",
+    "img": "./assets/7p.jpg"
+  },
+  {
+    "card": 8,
+    "suit": "8♠",
+    "img": "./assets/8p.jpg"
+  },
+  {
+    "card": 9,
+    "suit": "9♠",
+    "img": "./assets/9p.jpg"
+  },
+  {
+    "card": 10,
+    "suit": "10♠",
+    "img": "./assets/10p.jpg"
+  },
+  {
+    "card": 10,
+    "suit": "J♠",
+    "img": "./assets/10pj.jpg"
+  },
+  {
+    "card": 10,
+    "suit": "Q♠",
+    "img": "./assets/10pq.jpg"
+  },
+  {
+    "card": 10,
+    "suit": "K♠",
+    "img": "./assets/10pk.jpg"
+  },
+
+  {
+    "card": 11,
+    "suit": "A♥",
+    "img": "./assets/11ca.jpg"
+  },
+  {
+    "card": 2,
+    "suit": "2♥",
+    "img": "./assets/2c.jpg"
+  },
+  {
+    "card": 3,
+    "suit": "3♥",
+    "img": "./assets/3c.jpg"
+  },
+  {
+    "card": 4,
+    "suit": "4♥",
+    "img": "./assets/4c.jpg"
+  },
+  {
+    "card": 5,
+    "suit": "5♥",
+    "img": "./assets/5c.jpg"
+  },
+  {
+    "card": 6,
+    "suit": "6♥",
+    "img": "./assets/6c.jpg"
+  },
+  {
+    "card": 7,
+    "suit": "7♥",
+    "img": "./assets/7c.jpg"
+  },
+  {
+    "card": 8,
+    "suit": "8♥",
+    "img": "./assets/8c.jpg"
+  },
+  {
+    "card": 9,
+    "suit": "9♥",
+    "img": "./assets/9c.jpg"
+  },
+  {
+    "card": 10,
+    "suit": "10♥",
+    "img": "./assets/10c.jpg"
+  },
+  {
+    "card": 10,
+    "suit": "J♥",
+    "img": "./assets/10cj.jpg"
+  },
+  {
+    "card": 10,
+    "suit": "Q♥",
+    "img": "./assets/10cq.jpg"
+  },
+  {
+    "card": 10,
+    "suit": "K♥",
+    "img": "./assets/10ck.jpg"
+  },
+
+  {
+    "card": 11,
+    "suit": "A♦",
+    "img": "./assets/11da.jpg"
+  },
+  {
+    "card": 2,
+    "suit": "2♦",
+    "img": "./assets/2d.jpg"
+  },
+  {
+    "card": 3,
+    "suit": "3♦",
+    "img": "./assets/3d.jpg"
+  },
+  {
+    "card": 4,
+    "suit": "4♦",
+    "img": "./assets/4d.jpg"
+  },
+  {
+    "card": 5,
+    "suit": "5♦",
+    "img": "./assets/5d.jpg"
+  },
+  {
+    "card": 6,
+    "suit": "6♦",
+    "img": "./assets/6d.jpg"
+  },
+  {
+    "card": 7,
+    "suit": "7♦",
+    "img": "./assets/7d.jpg"
+  },
+  {
+    "card": 8,
+    "suit": "8♦",
+    "img": "./assets/8d.jpg"
+  },
+  {
+    "card": 9,
+    "suit": "9♦",
+    "img": "./assets/9d.jpg"
+  },
+  {
+    "card": 10,
+    "suit": "10♦",
+    "img": "./assets/10d.jpg"
+  },
+  {
+    "card": 10,
+    "suit": "J♦",
+    "img": "./assets/10dj.jpg"
+  },
+  {
+    "card": 10,
+    "suit": "Q♦",
+    "img": "./assets/10dq.jpg"
+  },
+  {
+    "card": 10,
+    "suit": "K♦",
+    "img": "./assets/10dk.jpg"
+  },
+
+  {
+    "card": 11,
+    "suit": "A♣",
+    "img": "./assets/11ta.jpg"
+  },
+  {
+    "card": 2,
+    "suit": "2♣",
+    "img": "./assets/2t.jpg"
+  },
+  {
+    "card": 3,
+    "suit": "3♣",
+    "img": "./assets/3t.jpg"
+  },
+  {
+    "card": 4,
+    "suit": "4♣",
+    "img": "./assets/4t.jpg"
+  },
+  {
+    "card": 5,
+    "suit": "5♣",
+    "img": "./assets/5t.jpg"
+  },
+  {
+    "card": 6,
+    "suit": "6♣",
+    "img": "./assets/6t.jpg"
+  },
+  {
+    "card": 7,
+    "suit": "7♣",
+    "img": "./assets/7t.jpg"
+  },
+  {
+    "card": 8,
+    "suit": "8♣",
+    "img": "./assets/8t.jpg"
+  },
+  {
+    "card": 9,
+    "suit": "9♣",
+    "img": "./assets/9t.jpg"
+  },
+  {
+    "card": 10,
+    "suit": "10♣",
+    "img": "./assets/10t.jpg"
+  },
+  {
+    "card": 10,
+    "suit": "J♣",
+    "img": "./assets/10tj.jpg"
+  },
+  {
+    "card": 10,
+    "suit": "Q♣",
+    "img": "./assets/10tq.jpg"
+  },
+  {
+    "card": 10,
+    "suit": "K♣",
+    "img": "./assets/10tk.jpg"
+  }
+]
