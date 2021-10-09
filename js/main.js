@@ -171,13 +171,13 @@
  }
 
  function displayCardInTable(target, imgSrc){ // funcion que agrega una carta visible en el HTML, reutilizada abajo para las manos de BOT y PLAYER
-  $(target).prepend(`<img src="${imgSrc}" />}`);
+  $(target).prepend(`<img src="${imgSrc}"/>`);
 }
 
  function tableCard() { // funcion que agrega una carta visible en el HTML
  
    displayCardInTable('#playerHand', dealtCards[dealtCards.length - 1].img);
-   $("#playerHand img:last-child").hide().slideDown("fast");
+   $("#playerHand img:last-child").hide().slideDown("fast"); 
  }
 
  function botTableCard() { 
@@ -263,7 +263,7 @@
      },
      "slow",
      function () {
-       $('#playerHand img').remove();
+       //$('#playerHand img').remove();
        $('#playerHand').empty();
      });
 
@@ -273,7 +273,7 @@
      },
      "slow",
      function () {
-       $('#botHand img').remove(); 
+      // $('#botHand img').remove(); 
        $('#botHand').empty();
      });     
  }
@@ -336,5 +336,3 @@ $(document).ready(function () {
     $("#load").prop("disabled", false);
   });
 });
-
-//try
