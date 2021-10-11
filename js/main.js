@@ -1,8 +1,8 @@
- let deck =[];
+ let deck = [];
  // Se utiliza esta variable como reserva para depositar un mazo inalterado del cual renovar el mazo en cada mano
- let fullDeck = []; 
+ let fullDeck = [];
  // Guardamos las cartas que ya se repartieron. Se utilizan 2 arrays: uno para la maquina y otro para el jugador
- let dealtCards = []; 
+ let dealtCards = [];
  let botDealtCards = [];
  let bet = 0;
  let gameScore = 0;
@@ -18,22 +18,22 @@
  let scoreDisplayE = document.querySelector("#score");
  let guidanceE = document.querySelector("#guidance");
 
-// mantenemos updateados los fondos del jugador de forma local previniendo errores
+ // mantenemos updateados los fondos del jugador de forma local previniendo errores
  if (savedFunds && !isNaN(savedFunds)) {
    funds = savedFunds;
  };
 
  // Llamada a Json local donde consta el mazo completo
-const URLJSON = "js/deck.json"
-$(document).ready(function () {
-  fundsDisplay("You have $" + funds + " to play"); 
-  $.getJSON(URLJSON, function (answer, status) {
-    if(status === "success"){
-      deck = answer;
-      fullDeck = answer      
-      };
-});
-});
+ const URLJSON = "js/deck.json"
+ $(document).ready(function () {
+   fundsDisplay("You have $" + funds + " to play");
+   $.getJSON(URLJSON, function (answer, status) {
+     if (status === "success") {
+       deck = answer;
+       fullDeck = answer
+     };
+   });
+ });
 
  /* EVENTOS DEL JUEGO : Habilitar o deshabilitar las opciones es esencial para hacer respetar las reglas del juego,
   al principio, solo se puede depositar fondos y empezar un juego.*/
@@ -51,7 +51,7 @@ $(document).ready(function () {
  $("#hit").bind('click', () => {
    selectedCard = dealRandomCard(); // la carta se reparte y sale del array del mazo para no repetirse, cada carta es unica y no queremos hacer trampa
    dealtCards.push(selectedCard);
-   gameScore = gameScore + selectedCard.card;   
+   gameScore = gameScore + selectedCard.card;
    scoreDisplay("You have currently bet $" + bet + " and have " + gameScore + " points on the table");
    tableCard();
 
@@ -67,54 +67,54 @@ $(document).ready(function () {
   el unico en el que juega, ahi se define si el jugador puede ganar el doble de lo que aposto.
   Siempre que la computadora tenga menos de 17 puntos totales, pedira una carta adicional. Cuando tenga 17 puntos o mas, se verifica quien gano.
    */
- const stand = document.querySelector("#stand");  
+ const stand = document.querySelector("#stand");
  $("#stand").bind('click', () => {
    guidance("You stand against the House!");
    outOfGame();
-   $("#quit").prop("disabled", false);  
+   $("#quit").prop("disabled", false);
 
-   while (botGameScore < 17) {  
+   while (botGameScore < 17) {
      computerDeal();
    }
 
-   if (botGameScore >= 17) { 
+   if (botGameScore >= 17) {
      closeGame();
    }
 
    /* Verificamos quien es victorioso y se realiza un update de los fondos de los que dispone el jugador en consecuencia.
    Prevemos no solamente quien tuvo mas puntos, sino ademas que hacer en caso de empate por identica puntuacion.*/
-   function closeGame() { 
+   function closeGame() {
 
      if ((botGameScore > 21) || (botGameScore < gameScore)) {
 
        scoreDisplay("The House has " + botGameScore + " points and You've " + gameScore + " points, you WON!");
        funds = funds + (bet * 2);
-       localStorage.setItem('localPlayer', funds);       
+       localStorage.setItem('localPlayer', funds);
        fundsDisplay("You have $" + funds + " to play");
        botGameScore = 0;
        gameScore = 0;
        return funds;
-     } else if ((botGameScore < 21) && (botGameScore > gameScore)) {       
+     } else if ((botGameScore < 21) && (botGameScore > gameScore)) {
        fundsDisplay("You have $" + funds + " to play");
        scoreDisplay("The House has " + botGameScore + " points and You've " + gameScore + " points, you lost the bet");
        botGameScore = 0;
        gameScore = 0;
        return funds;
-     } else if ((botGameScore == gameScore)) {            // que sucede si ambos empatan
-      if (botDealtCards[botDealtCards.length - 1].card > dealtCards[dealtCards.length - 1].card){
-        fundsDisplay("You have $" + funds + " to play");
-        scoreDisplay("You tied with the House but the House has the higher last card, thus you lost the bet");
-        botGameScore = 0;
-        gameScore = 0;
-        return funds;
-      } else {
-        fundsDisplay("You have $" + funds + " to play");
-        scoreDisplay("You tied with the House but you have the higher last card, thus you won the bet!");
-        funds = funds + (bet * 2);
-        botGameScore = 0;
-        gameScore = 0;
-        return funds;
-      }
+     } else if ((botGameScore == gameScore)) { // que sucede si ambos empatan
+       if (botDealtCards[botDealtCards.length - 1].card > dealtCards[dealtCards.length - 1].card) {
+         fundsDisplay("You have $" + funds + " to play");
+         scoreDisplay("You tied with the House but the House has the higher last card, thus you lost the bet");
+         botGameScore = 0;
+         gameScore = 0;
+         return funds;
+       } else {
+         fundsDisplay("You have $" + funds + " to play");
+         scoreDisplay("You tied with the House but you have the higher last card, thus you won the bet!");
+         funds = funds + (bet * 2);
+         botGameScore = 0;
+         gameScore = 0;
+         return funds;
+       }
      };
 
    }
@@ -133,35 +133,35 @@ $(document).ready(function () {
 
  // FUNCIONES 
 
-// permiten cambiar rapidamente los mensajes que se updatean de forma asincrona para guiar al jugador
+ // permiten cambiar rapidamente los mensajes que se updatean de forma asincrona para guiar al jugador
  function fundsDisplay(msg) {
-  fundsDisplayE.innerHTML = msg;
-};
+   fundsDisplayE.innerHTML = msg;
+ };
 
-function scoreDisplay(msg) {
-  scoreDisplayE.innerHTML = msg;
-};
+ function scoreDisplay(msg) {
+   scoreDisplayE.innerHTML = msg;
+ };
 
-function guidance(msg) {
-  guidanceE.innerHTML = msg;
-};
+ function guidance(msg) {
+   guidanceE.innerHTML = msg;
+ };
 
-// muestra de forma dinamica y en tiempo real cuanto dinero virtual posee el jugador, es el primer paso, sin fondos no se puede jugar
- function placeFunds(inputFunds) { 
-   
+ // muestra de forma dinamica y en tiempo real cuanto dinero virtual posee el jugador, es el primer paso, sin fondos no se puede jugar
+ function placeFunds(inputFunds) {
+
    inputFunds = parseInt(inputFunds);
    fundsForm.style.display = 'block';
 
    if (isNaN(inputFunds) || inputFunds <= 0) {
 
-     
+
      fundsDisplay("Place valid funds, \n You have $" + funds + " to play");
 
    } else {
 
      funds += inputFunds
      localStorage.setItem('localPlayer', funds);
-    
+
      fundsDisplay("You have $" + funds + " to play");
      fundsForm.style.display = 'none';
 
@@ -186,7 +186,7 @@ function guidance(msg) {
  Primero: guardamos la carta seleccionada en una constante que toma la posición randomizada en el índice del array donde están todas las cartas del mazo.
  Segundo: removemos la carta del array deck (evitamos repeticiones de carta durante esta mano). */
 
- function dealRandomCard() { 
+ function dealRandomCard() {
    const index = Math.floor(Math.random() * deck.length);
    const selectedCard = deck[index]; //
    deck.splice(index, 1); // 
@@ -194,104 +194,103 @@ function guidance(msg) {
  }
 
  // funcion que agrega una carta visible en el HTML, reutilizada para las manos de BOT y PLAYER
- function displayCardInTable(target, imgSrc){ 
-  $(target).prepend(`<img src="${imgSrc}"/>`);
-}
-
-// funciones que agregan una carta visible en el HTML para computadora y jugador respectivamente
- function tableCard() { 
- 
-   displayCardInTable('#playerHand', dealtCards[dealtCards.length - 1].img);
-   $("#playerHand img:last-child").hide().slideDown("fast"); 
+ function displayCardInTable(target, imgSrc) {
+   $(target).prepend(`<img src="${imgSrc}"/>`);
  }
 
- function botTableCard() { 
+ // funciones que agregan una carta visible en el HTML para computadora y jugador respectivamente
+ function tableCard() {
+
+   displayCardInTable('#playerHand', dealtCards[dealtCards.length - 1].img);
+   $("#playerHand img:last-child").hide().slideDown("fast");
+ }
+
+ function botTableCard() {
 
    displayCardInTable('#botHand', botDealtCards[botDealtCards.length - 1].img);
    $("#botHand img:last-child").hide().slideDown("fast");
  }
- 
-// De forma asincrona mostramos al jugador todo el proceso para apostar correctamente y poder comenzar el juego debidamente
-function placeBet(inputBet) { 
-   
-  inputBet = parseInt(inputBet);
-  betForm.style.display = 'block';
-  
-  if (isNaN(inputBet) || inputBet <= 0) {
-    
-    guidance("Place valid bet");
-    scoreDisplay("")
 
-  } else if (inputBet > funds) {
-    guidance("Funds insufficient, place more funds and try again");
-    scoreDisplay("")
+ // De forma asincrona mostramos al jugador todo el proceso para apostar correctamente y poder comenzar el juego debidamente
+ function placeBet(inputBet) {
 
-  }  else {
+   inputBet = parseInt(inputBet);
+   betForm.style.display = 'block';
 
-    bet += inputBet   
-    scoreDisplay("You have currently bet $" + bet);
-    betForm.style.display = 'none';
-    newBetTotal = funds - parseInt(bet);
-    funds = newBetTotal
-    localStorage.setItem('localPlayer', funds);
-    fundsDisplay("You have $" + funds + " to play");
-    firstHand();
+   if (isNaN(inputBet) || inputBet <= 0) {
 
-    };
-    // pasados los chequeos se juega la primera mano, donde se reparten dos cartas para el jugador
-    function firstHand() {     
-      $("#play").prop("disabled", true);
-      let selectedCard = dealRandomCard(); 
-      dealtCards.push(selectedCard); 
-      tableCard();
- 
-      selectedCard = dealRandomCard(); 
-      dealtCards.push(selectedCard);
-      tableCard();
- 
-      gameScore += dealtCards[0].card + dealtCards[1].card;         
-      guidance("Click Hit or Stand to continue");
-      scoreDisplay("You have currently bet $" + bet + " and have " + gameScore + " points on the table");
-      onGame();
-      return bet;
-    } 
-  }; 
+     guidance("Place valid bet");
+     scoreDisplay("")
 
+   } else if (inputBet > funds) {
+     guidance("Funds insufficient, place more funds and try again");
+     scoreDisplay("")
 
-function updateBet(){  
-  const bet = $('#addBetInput').val();  
-  placeBet(bet);  
-};
+   } else {
+
+     bet += inputBet
+     scoreDisplay("You have currently bet $" + bet);
+     betForm.style.display = 'none';
+     newBetTotal = funds - parseInt(bet);
+     funds = newBetTotal
+     localStorage.setItem('localPlayer', funds);
+     fundsDisplay("You have $" + funds + " to play");
+     firstHand();
+
+   };
+   // pasados los chequeos se juega la primera mano, donde se reparten dos cartas para el jugador
+   function firstHand() {
+     $("#play").prop("disabled", true);
+     let selectedCard = dealRandomCard();
+     dealtCards.push(selectedCard);
+     tableCard();
+
+     selectedCard = dealRandomCard();
+     dealtCards.push(selectedCard);
+     tableCard();
+
+     gameScore += dealtCards[0].card + dealtCards[1].card;
+     guidance("Click Hit or Stand to continue");
+     scoreDisplay("You have currently bet $" + bet + " and have " + gameScore + " points on the table");
+     onGame();
+     return bet;
+   }
+ };
+
+ function updateBet() {
+   const bet = $('#addBetInput').val();
+   placeBet(bet);
+ };
 
  function startGame() {
-  if (playerHand.hasChildNodes() || botHand.hasChildNodes()) {       
-    $('#playerHand').empty();
-    $('#botHand').empty();
-    clearScores();    
-    finishGame();      
-  }
-  placeBet();
-};
+   if (playerHand.hasChildNodes() || botHand.hasChildNodes()) {
+     $('#playerHand').empty();
+     $('#botHand').empty();
+     clearScores();
+     finishGame();
+   }
+   placeBet();
+ };
 
-// remueve todas las cartas si el jugador perdio o decidio rendirse (o si gana, en el futuro), resetea el mazo y las manos de jugadores al estado inicial
+ // remueve todas las cartas si el jugador perdio o decidio rendirse (o si gana, en el futuro), resetea el mazo y las manos de jugadores al estado inicial
 
- function finishGame() { 
+ function finishGame() {
 
    clearTableAnimation();
-   deck = [...fullDeck];   
+   deck = [...fullDeck];
    dealtCards = [];
    botDealtCards = [];
    outOfGame();
    clearScores();
    bet = 0;
    localStorage.setItem('localPlayer', funds);
-   guidance("Click play to start");   
+   guidance("Click play to start");
    updateDisplay();
    scoreDisplay("");
  };
 
-// animo la remocion de cartas tras terminado el juego, a su vez removiendo los elementos del DOM en concatenacion
- function clearTableAnimation() { 
+ // animo la remocion de cartas tras terminado el juego, a su vez removiendo los elementos del DOM en concatenacion
+ function clearTableAnimation() {
 
    $('#playerHand img').animate({
        left: '550px',
@@ -299,7 +298,7 @@ function updateBet(){  
      },
      "slow",
      function () {
-      $('#playerHand').empty();
+       $('#playerHand').empty();
      });
 
    $('#botHand img').animate({
@@ -308,54 +307,54 @@ function updateBet(){  
      },
      "slow",
      function () {
-      $('#botHand').empty();
-     });     
+       $('#botHand').empty();
+     });
  }
 
  function computerDeal() {
 
    selectedCard = dealRandomCard(); // es un calco de la funcion que da cartas al jugador, pero el array es otro
    botDealtCards.push(selectedCard);
-   botGameScore = botGameScore + selectedCard.card; 
+   botGameScore = botGameScore + selectedCard.card;
    botTableCard();
  }
 
  function updateDisplay() {
- fundsDisplay("You have $" + funds + " to play");
- scoreDisplay("You have currently bet $" + bet + " and have " + gameScore + " points on the table");
+   fundsDisplay("You have $" + funds + " to play");
+   scoreDisplay("You have currently bet $" + bet + " and have " + gameScore + " points on the table");
  }
 
  function clearScores() {
-  gameScore = 0;
-  botGameScore = 0;  
+   gameScore = 0;
+   botGameScore = 0;
  }
 
-function updateFunds(){  
-  const funds = $('#addFundsInput').val();  
-  placeFunds(funds);  
-};
+ function updateFunds() {
+   const funds = $('#addFundsInput').val();
+   placeFunds(funds);
+ };
 
-// AJAX, traigo una lista de usuarios de un servidor gratuito para simular jugadores distinguidos
+ // AJAX, traigo una lista de usuarios de un servidor gratuito para simular jugadores distinguidos
 
-$(document).ready(function () {
-  $("#reload").hide();
-  $("#load").click(function () {
-    $("#list").empty();
-    $("#loader").show();
-    $("#load").prop("disabled", true);
-    $.ajax("https://jsonplaceholder.typicode.com/users").done(function (users) {
-      $("#loader").hide();
-      $("#reload").show();
-      users.forEach(function (user) {
-        $("#list").append(`<li>${user.name}</li>`);
-      });
-    });
-    
-  });
-  $("#reload").click(function () {
-    $("#list").empty();
-    $("#reload").hide();
-    $("#loader").hide();
-    $("#load").prop("disabled", false);
-  });
-});
+ $(document).ready(function () {
+   $("#reload").hide();
+   $("#load").click(function () {
+     $("#list").empty();
+     $("#loader").show();
+     $("#load").prop("disabled", true);
+     $.ajax("https://jsonplaceholder.typicode.com/users").done(function (users) {
+       $("#loader").hide();
+       $("#reload").show();
+       users.forEach(function (user) {
+         $("#list").append(`<li>${user.name}</li>`);
+       });
+     });
+
+   });
+   $("#reload").click(function () {
+     $("#list").empty();
+     $("#reload").hide();
+     $("#loader").hide();
+     $("#load").prop("disabled", false);
+   });
+ });
