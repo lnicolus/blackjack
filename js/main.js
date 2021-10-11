@@ -177,7 +177,7 @@
  function tableCard() { // funcion que agrega una carta visible en el HTML
  
    displayCardInTable('#playerHand', dealtCards[dealtCards.length - 1].img);
-   $("#playerHand img:last-child").hide().slideDown("fast");
+   $("#playerHand img:last-child").hide().slideDown("fast"); 
  }
 
  function botTableCard() { 
@@ -263,7 +263,7 @@
      },
      "slow",
      function () {
-       $('#playerHand img').remove();
+       //$('#playerHand img').remove();
        $('#playerHand').empty();
      });
 
@@ -273,7 +273,7 @@
      },
      "slow",
      function () {
-       $('#botHand img').remove(); 
+      // $('#botHand img').remove(); 
        $('#botHand').empty();
      });     
  }
