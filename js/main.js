@@ -171,7 +171,7 @@
  }
 
  function displayCardInTable(target, imgSrc){ // funcion que agrega una carta visible en el HTML, reutilizada abajo para las manos de BOT y PLAYER
-  $(target).prepend(`<img src="${imgSrc}" />}`);
+  $(target).prepend(`<img src="${imgSrc}"/>`);
 }
 
  function tableCard() { // funcion que agrega una carta visible en el HTML
