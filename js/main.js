@@ -1,6 +1,8 @@
  let deck =[];
- const fullDeck = [...deck]; // use spread operator para mantener un mazo inalterado al cual volver una vez finalizado el juego y luego copiar las cartas deck = [...fullDeck];
- let dealtCards = []; // aca guardamos las cartas que ya se repartieron. Serán necesarios 2 arrays: uno para la maquina y otro para el jugador
+ // Se utiliza esta variable como reserva para depositar un mazo inalterado del cual renovar el mazo en cada mano
+ let fullDeck = []; 
+ // Guardamos las cartas que ya se repartieron. Se utilizan 2 arrays: uno para la maquina y otro para el jugador
+ let dealtCards = []; 
  let botDealtCards = [];
  let bet = 0;
  let gameScore = 0;
@@ -12,30 +14,29 @@
  let newBetTotal = 0;
  const safety = false;
  const fundsForm = document.querySelector('#fundsForm');
-
- if (savedFunds && !isNaN(savedFunds)) {
-   funds = savedFunds;
- };
-
  let fundsDisplayE = document.querySelector("#funds");
  let scoreDisplayE = document.querySelector("#score");
  let guidanceE = document.querySelector("#guidance");
 
- function fundsDisplay(msg) {
-   fundsDisplayE.innerHTML = msg;
+// mantenemos updateados los fondos del jugador de forma local previniendo errores
+ if (savedFunds && !isNaN(savedFunds)) {
+   funds = savedFunds;
  };
 
- function scoreDisplay(msg) {
-   scoreDisplayE.innerHTML = msg;
- };
+ // Llamada a Json local donde consta el mazo completo
+const URLJSON = "js/deck.json"
+$(document).ready(function () {
+  fundsDisplay("You have $" + funds + " to play"); 
+  $.getJSON(URLJSON, function (answer, status) {
+    if(status === "success"){
+      deck = answer;
+      fullDeck = answer      
+      };
+});
+});
 
- function guidance(msg) {
-   guidanceE.innerHTML = msg;
- };                     
-
- fundsDisplay("You have $" + funds + " to play"); 
-
- // EVENTOS DEL JUEGO : Habilitar o deshabilitar las opciones es esencial para hacer respetar las reglas del juego, al principio, solo se puede depositar fondos y empezar un juego.
+ /* EVENTOS DEL JUEGO : Habilitar o deshabilitar las opciones es esencial para hacer respetar las reglas del juego,
+  al principio, solo se puede depositar fondos y empezar un juego.*/
  $("#hit").prop("disabled", true);
  $("#stand").prop("disabled", true);
  $("#quit").prop("disabled", true);
@@ -45,7 +46,6 @@
  $("#play").bind('click', () => {
    startGame();
  });
-
 
  const hit = document.querySelector("#hit"); // hit permite pedir una carta al azar adicional
  $("#hit").bind('click', () => {
@@ -63,22 +63,26 @@
    }
  });
 
-
- const stand = document.querySelector("#stand"); // stand significa que no me pase de 21 y decido jugar mi suerte con el puntaje que ya tengo
+ /* Stand significa que no me pase de 21 y decido jugar mi suerte con el puntaje que ya tengo la jugada de la computadora esta encerrada en el evento de Stand,
+  el unico en el que juega, ahi se define si el jugador puede ganar el doble de lo que aposto.
+  Siempre que la computadora tenga menos de 17 puntos totales, pedira una carta adicional. Cuando tenga 17 puntos o mas, se verifica quien gano.
+   */
+ const stand = document.querySelector("#stand");  
  $("#stand").bind('click', () => {
    guidance("You stand against the House!");
    outOfGame();
-   $("#quit").prop("disabled", false);
-   // la jugada de la computadora esta encerrada en el evento de Stand, el unico en el que juega, ahi se define si el jugador puede ganar el doble de lo que aposto
+   $("#quit").prop("disabled", false);  
 
-   while (botGameScore < 17) { // siempre que la computadora tenga menos de 17 puntos totales, pedira una carta adicional
+   while (botGameScore < 17) {  
      computerDeal();
    }
 
-   if (botGameScore >= 17) { // cuando tenga 17 puntos o mas, se verifica quien gano
+   if (botGameScore >= 17) { 
      closeGame();
    }
 
+   /* Verificamos quien es victorioso y se realiza un update de los fondos de los que dispone el jugador en consecuencia.
+   Prevemos no solamente quien tuvo mas puntos, sino ademas que hacer en caso de empate por identica puntuacion.*/
    function closeGame() { 
 
      if ((botGameScore > 21) || (botGameScore < gameScore)) {
@@ -118,17 +122,32 @@
 
  const quit = document.querySelector("#quit");
  $("#quit").bind('click', () => {
-   let safety = confirm("Do you wish to quit? you will lose your bets");
+   let safety = confirm("Do you wish to quit? unresolved bets will be lost");
    if (safety) {
      outOfGame();
      $("#play").prop("disabled", false);
      finishGame();
-   }
+   };
  });
+
 
  // FUNCIONES 
 
- function placeFunds(inputFunds) { // muestra de forma dinamica y en tiempo real cuanto dinero virtual posee el jugador, es el primer paso, sin fondos no se puede jugar
+// permiten cambiar rapidamente los mensajes que se updatean de forma asincrona para guiar al jugador
+ function fundsDisplay(msg) {
+  fundsDisplayE.innerHTML = msg;
+};
+
+function scoreDisplay(msg) {
+  scoreDisplayE.innerHTML = msg;
+};
+
+function guidance(msg) {
+  guidanceE.innerHTML = msg;
+};
+
+// muestra de forma dinamica y en tiempo real cuanto dinero virtual posee el jugador, es el primer paso, sin fondos no se puede jugar
+ function placeFunds(inputFunds) { 
    
    inputFunds = parseInt(inputFunds);
    fundsForm.style.display = 'block';
@@ -163,18 +182,24 @@
    $("#play").prop("disabled", true);
  }
 
- function dealRandomCard() { // funcion para elegir una carta al azar, reutilizable
+ /* Esta funcion permite elegir una carta al azar, y es reutilizable. 
+ Primero: guardamos la carta seleccionada en una constante que toma la posición randomizada en el índice del array donde están todas las cartas del mazo.
+ Segundo: removemos la carta del array deck (evitamos repeticiones de carta durante esta mano). */
+
+ function dealRandomCard() { 
    const index = Math.floor(Math.random() * deck.length);
-   const selectedCard = deck[index]; //guardamos la carta seleccionada en una constante que toma la posición randomizada en el índice del array donde están todas las cartas del mazo
-   deck.splice(index, 1); // removemos la carta del deck
+   const selectedCard = deck[index]; //
+   deck.splice(index, 1); // 
    return selectedCard;
  }
 
- function displayCardInTable(target, imgSrc){ // funcion que agrega una carta visible en el HTML, reutilizada abajo para las manos de BOT y PLAYER
+ // funcion que agrega una carta visible en el HTML, reutilizada para las manos de BOT y PLAYER
+ function displayCardInTable(target, imgSrc){ 
   $(target).prepend(`<img src="${imgSrc}"/>`);
 }
 
- function tableCard() { // funcion que agrega una carta visible en el HTML
+// funciones que agregan una carta visible en el HTML para computadora y jugador respectivamente
+ function tableCard() { 
  
    displayCardInTable('#playerHand', dealtCards[dealtCards.length - 1].img);
    $("#playerHand img:last-child").hide().slideDown("fast"); 
@@ -186,76 +211,87 @@
    $("#botHand img:last-child").hide().slideDown("fast");
  }
  
+// De forma asincrona mostramos al jugador todo el proceso para apostar correctamente y poder comenzar el juego debidamente
+function placeBet(inputBet) { 
+   
+  inputBet = parseInt(inputBet);
+  betForm.style.display = 'block';
+  
+  if (isNaN(inputBet) || inputBet <= 0) {
+    
+    guidance("Place valid bet");
+    scoreDisplay("")
+
+  } else if (inputBet > funds) {
+    guidance("Funds insufficient, place more funds and try again");
+    scoreDisplay("")
+
+  }  else {
+
+    bet += inputBet   
+    scoreDisplay("You have currently bet $" + bet);
+    betForm.style.display = 'none';
+    newBetTotal = funds - parseInt(bet);
+    funds = newBetTotal
+    localStorage.setItem('localPlayer', funds);
+    fundsDisplay("You have $" + funds + " to play");
+    firstHand();
+
+    };
+    // pasados los chequeos se juega la primera mano, donde se reparten dos cartas para el jugador
+    function firstHand() {     
+      $("#play").prop("disabled", true);
+      let selectedCard = dealRandomCard(); 
+      dealtCards.push(selectedCard); 
+      tableCard();
+ 
+      selectedCard = dealRandomCard(); 
+      dealtCards.push(selectedCard);
+      tableCard();
+ 
+      gameScore += dealtCards[0].card + dealtCards[1].card;         
+      guidance("Click Hit or Stand to continue");
+      scoreDisplay("You have currently bet $" + bet + " and have " + gameScore + " points on the table");
+      onGame();
+      return bet;
+    } 
+  }; 
+
+
+function updateBet(){  
+  const bet = $('#addBetInput').val();  
+  placeBet(bet);  
+};
+
  function startGame() {
+  if (playerHand.hasChildNodes() || botHand.hasChildNodes()) {       
+    $('#playerHand').empty();
+    $('#botHand').empty();
+    clearScores();    
+    finishGame();      
+  }
+  placeBet();
+};
 
-   bet = parseInt(validate_bet(prompt("Set your bet")));
+// remueve todas las cartas si el jugador perdio o decidio rendirse (o si gana, en el futuro), resetea el mazo y las manos de jugadores al estado inicial
 
-   if (playerHand.hasChildNodes() || botHand.hasChildNodes()) {       
-     $('#playerHand').empty();
-     $('#botHand').empty();
-     clearScores();
-     updateDisplay();
-     dealtCards = [];
-     botDealtCards = [];
-   }
-
-   if (!isNaN(bet) && funds >= 0 && bet >= 0) {     
-     $("#play").prop("disabled", true);
-     let selectedCard = dealRandomCard(); //obtenemos la nueva carta
-     dealtCards.push(selectedCard); //agregamos la carta al array de cartas repartidas
-     tableCard();
-
-     selectedCard = dealRandomCard(); // repetimos lo mismo porque son 2 cartas en la primera mano
-     dealtCards.push(selectedCard);
-     tableCard();
-
-     gameScore += dealtCards[0].card + dealtCards[1].card;         
-     guidance("Click Hit or Stand to continue");
-     scoreDisplay("You have currently bet $" + bet + " and have " + gameScore + " points on the table");
-     onGame();
-     return bet;
-   } else {
-     $("#play").prop("disabled", false);
-     return bet;
-   }
- }
-
- function validate_bet(bet) { // chequeamos la validez de la apuesta para evitar resultados no deseados    
-
-   if (isNaN(bet) || !bet) {
-
-     guidance("Place valid bet");
-     scoreDisplay("")
-
-   } else if (bet > funds) {
-     guidance("Funds insufficient, place more funds and try again");
-     scoreDisplay("")
-
-   } else {
-     newBetTotal = funds - parseInt(bet);
-     funds = newBetTotal
-     localStorage.setItem('localPlayer', funds);
-     fundsDisplay("You have $" + funds + " to play");
-     return bet;
-   }
- };
-
- function finishGame() { // remueve todas las cartas si el jugador perdio o decidio rendirse (o si gana, en el futuro), resetea el mazo y las manos de jugadores al estado inicial
+ function finishGame() { 
 
    clearTableAnimation();
-   deck = [...fullDeck];
+   deck = [...fullDeck];   
    dealtCards = [];
    botDealtCards = [];
    outOfGame();
    clearScores();
    bet = 0;
    localStorage.setItem('localPlayer', funds);
-   guidance("Click play to start");
-   fundsDisplay("You have $" + funds + " to play");
+   guidance("Click play to start");   
+   updateDisplay();
    scoreDisplay("");
- }
+ };
 
- function clearTableAnimation() { // animo la remocion de cartas tras terminado el juego, a su vez removiendo los elementos del DOM en concatenacion
+// animo la remocion de cartas tras terminado el juego, a su vez removiendo los elementos del DOM en concatenacion
+ function clearTableAnimation() { 
 
    $('#playerHand img').animate({
        left: '550px',
@@ -263,8 +299,7 @@
      },
      "slow",
      function () {
-       //$('#playerHand img').remove();
-       $('#playerHand').empty();
+      $('#playerHand').empty();
      });
 
    $('#botHand img').animate({
@@ -273,8 +308,7 @@
      },
      "slow",
      function () {
-      // $('#botHand img').remove(); 
-       $('#botHand').empty();
+      $('#botHand').empty();
      });     
  }
 
@@ -301,18 +335,7 @@ function updateFunds(){  
   placeFunds(funds);  
 };
 
-//Declaramos la url del archivo JSON local
-const URLJSON = "js/deck.json"
-//Escuchamos el evento click del botón agregado
-$(document).ready(function () {
-  $.getJSON(URLJSON, function (respuesta, estado) {
-    if(estado === "success"){
-      deck = respuesta;
-      return deck;}
-});
-});
-
-// solo para el ejercicio de Coder AJAX, traigo una lista de usuarios de un servidor gratuito
+// AJAX, traigo una lista de usuarios de un servidor gratuito para simular jugadores distinguidos
 
 $(document).ready(function () {
   $("#reload").hide();

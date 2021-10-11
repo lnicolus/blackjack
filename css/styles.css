@@ -12,7 +12,7 @@ h1, p, div, button {
    color: blanchedalmond;   
  }
  
-#fundsForm {
+#fundsForm, #betForm {
   display:none;
   color: black;
   font-weight: bold;
