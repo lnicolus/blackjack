@@ -252,7 +252,7 @@
    localStorage.setItem('localPlayer', funds);
    guidance("Click play to start");
    fundsDisplay("You have $" + funds + " to play");
-   scoreDisplay("You have currently bet $" + bet + " and have " + gameScore + " points on the table");  
+   scoreDisplay("");
  }
 
  function clearTableAnimation() { // animo la remocion de cartas tras terminado el juego, a su vez removiendo los elementos del DOM en concatenacion
