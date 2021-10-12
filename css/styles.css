@@ -21,12 +21,10 @@ h1, p, div, button {
 
 #displayWrapper{
   display: flex;
-  flex-direction: row;
-  margin: auto;  
+  flex-direction: row;   
   width: 100%;
-  flex-wrap: nowrap;
-  align-items: flex-start;
-  justify-content: space-between;
+  flex-wrap: nowrap;    
+  justify-content: space-evenly;
   align-items: center;
 }
 
@@ -40,7 +38,6 @@ margin-right: 5%;
 
 #botsideDisplay{  
 max-width: 15vw;
-margin-left: 5%;
 }
 
 #sideDisplay div{
@@ -49,11 +46,14 @@ margin-left: 5%;
 
 .cardZone{
   min-width: 30vw;
+  display: flex;
+  flex-direction: column;
 }
-
 
 #botHand {
   margin-top: 4%;  
+  display: flex;
+  flex-direction: row;
 }
 
  h1{
@@ -151,26 +151,6 @@ margin-left: 5%;
 
 #playerHand {
   margin-top: 1%;
-
+  display: flex;
+  flex-direction: row;
 }
-
-#cpuHand {
-  margin-top: 1.5%;
-
-}
-
-
-/*@media (min-width: 768px) { Para hacer: pasar este media que hace desaparecer la barra, a que mande la barra hacia abajo (hay que hacer un media nuevo y borrar este) con el fin de jugar en celular 
-  #sidebarWrapper {
-    margin-left: 0;
-  }
-
-  #page-content-wrapper {
-    min-width: 0;
-    width: 100%;
-  }
-
-  body.sb-sidenav-toggled #wrapper #sidebarWrapper {
-    margin-left: -15rem;
-  }
-} */
