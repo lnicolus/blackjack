@@ -44,18 +44,30 @@
                     <h1>Blackjack!</h1>
 
                     <div><p id="guidance">Click play to start.</p></div>
-                    <div class="displayCurrentFunds"><p id="funds"></p></div>
-                    <div class="scoreDisplay"><p id="score"></p></div>
-                    <div id="playerHand">
-
+                    <div>
+                        <div class="displayCurrentFunds"><p id="funds"></p></div>
+                        <div class="scoreDisplay"><p id="score"></p></div>
                     </div>
-             
-                    <div id="botHand">
-                    
-                </div>
-                </div>
+                <div id="displayWrapper">
+                    <div id="botsideDisplay">
+                        <div id="botNameDisplay"></div>
+                        <div id="botScoreDisplay"></div>                        
+                    </div>
+                    <div class="cardZone">
+                        <div id="playerHand"></div>
+                        <div id="botHand"></div>
+                    </div>
+                    <div id="sideDisplay">
+                        <div>You</div>
+                        <div id="bigScoreDisplay">Score:</div>
+                        <div id="bigFundsDisplay">Funds:</div>
+                    </div>
+
+                </div>           
+              
             </div>
-        </div> 
+        </div>
+    </div> 
         <div class="ajax">            
             <button id="load">Load Distinguished users</button>
             <div id="loader"></div>

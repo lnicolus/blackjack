@@ -15,8 +15,13 @@
  const safety = false;
  const fundsForm = document.querySelector('#fundsForm');
  let fundsDisplayE = document.querySelector("#funds");
+ let fundsDisplayB = document.querySelector("#bigFundsDisplay");
  let scoreDisplayE = document.querySelector("#score");
+ let botScoreDisplayE = document.querySelector("#botScoreDisplay");
+ let scoreDisplayB = document.querySelector("#bigScoreDisplay");
  let guidanceE = document.querySelector("#guidance");
+ let nameB = document.querySelector("#botNameDisplay");
+ let selectedName;
 
  // mantenemos updateados los fondos del jugador de forma local previniendo errores
  if (savedFunds && !isNaN(savedFunds)) {
@@ -26,11 +31,11 @@
  // Llamada a Json local donde consta el mazo completo
  const URLJSON = "js/deck.json"
  $(document).ready(function () {
-   fundsDisplay("You have $" + funds + " to play");
+   updateDisplay();
    $.getJSON(URLJSON, function (answer, status) {
      if (status === "success") {
        deck = answer;
-       fullDeck = answer
+       fullDeck = answer;   
      };
    });
  });
@@ -43,8 +48,22 @@
  $("#play").prop("disabled", false);
 
  const play = document.querySelector("#play"); // empezamos el juego de forma ordenada
- $("#play").bind('click', () => {
+ $("#play").bind('click', () => {   
    startGame();
+   $.ajax("https://jsonplaceholder.typicode.com/users").done(function (users) {      
+       users.forEach(function (user) {
+         $("#list").append(`<li>${user.name}</li>`);
+       });
+       function randomOpponentName() {
+        const index = Math.floor(Math.random() * users.length);
+        selectedName = users[index]; 
+        users.splice(index, 1); 
+        nameD(selectedName.name);
+        $("#list").hide();
+        return selectedName;
+      };
+      randomOpponentName();      
+     });
  });
 
  const hit = document.querySelector("#hit"); // hit permite pedir una carta al azar adicional
@@ -65,8 +84,7 @@
 
  /* Stand significa que no me pase de 21 y decido jugar mi suerte con el puntaje que ya tengo la jugada de la computadora esta encerrada en el evento de Stand,
   el unico en el que juega, ahi se define si el jugador puede ganar el doble de lo que aposto.
-  Siempre que la computadora tenga menos de 17 puntos totales, pedira una carta adicional. Cuando tenga 17 puntos o mas, se verifica quien gano.
-   */
+  Siempre que la computadora tenga menos de 17 puntos totales, pedira una carta adicional. Cuando tenga 17 puntos o mas, se verifica quien gano.*/
  const stand = document.querySelector("#stand");
  $("#stand").bind('click', () => {
    guidance("You stand against the House!");
@@ -84,35 +102,37 @@
    /* Verificamos quien es victorioso y se realiza un update de los fondos de los que dispone el jugador en consecuencia.
    Prevemos no solamente quien tuvo mas puntos, sino ademas que hacer en caso de empate por identica puntuacion.*/
    function closeGame() {
-
+      // Caso gana el Bot
+    botScoreDisplay("Score: "+botGameScore);
      if ((botGameScore > 21) || (botGameScore < gameScore)) {
-
        scoreDisplay("The House has " + botGameScore + " points and You've " + gameScore + " points, you WON!");
        funds = funds + (bet * 2);
        localStorage.setItem('localPlayer', funds);
-       fundsDisplay("You have $" + funds + " to play");
+       updateFinalResultsDisplay();
        botGameScore = 0;
-       gameScore = 0;
+       gameScore = 0;       
        return funds;
+       // Caso Jugador gana
      } else if ((botGameScore < 21) && (botGameScore > gameScore)) {
-       fundsDisplay("You have $" + funds + " to play");
+       updateFinalResultsDisplay();
        scoreDisplay("The House has " + botGameScore + " points and You've " + gameScore + " points, you lost the bet");
        botGameScore = 0;
-       gameScore = 0;
+       gameScore = 0;       
        return funds;
-     } else if ((botGameScore == gameScore)) { // que sucede si ambos empatan
+       // Casos de empate
+     } else if ((botGameScore == gameScore)) { 
        if (botDealtCards[botDealtCards.length - 1].card > dealtCards[dealtCards.length - 1].card) {
-         fundsDisplay("You have $" + funds + " to play");
+         updateFinalResultsDisplay();
          scoreDisplay("You tied with the House but the House has the higher last card, thus you lost the bet");
          botGameScore = 0;
-         gameScore = 0;
+         gameScore = 0;         
          return funds;
        } else {
-         fundsDisplay("You have $" + funds + " to play");
+         updateFinalResultsDisplay();
          scoreDisplay("You tied with the House but you have the higher last card, thus you won the bet!");
          funds = funds + (bet * 2);
          botGameScore = 0;
-         gameScore = 0;
+         gameScore = 0;         
          return funds;
        }
      };
@@ -127,6 +147,7 @@
      outOfGame();
      $("#play").prop("disabled", false);
      finishGame();
+     nameD("");     
    };
  });
 
@@ -138,13 +159,29 @@
    fundsDisplayE.innerHTML = msg;
  };
 
+ function fundsDisplayBig(msg) {
+  fundsDisplayB.innerHTML = msg;
+};
+
  function scoreDisplay(msg) {
    scoreDisplayE.innerHTML = msg;
  };
 
+ function scoreDisplayBig(msg) {
+  scoreDisplayB.innerHTML = msg;
+};
+
+function botScoreDisplay(msg) {
+  botScoreDisplayE.innerHTML = msg;
+};
+
  function guidance(msg) {
    guidanceE.innerHTML = msg;
  };
+
+ function nameD(msg) {
+  nameB.innerHTML = msg;
+};
 
  // muestra de forma dinamica y en tiempo real cuanto dinero virtual posee el jugador, es el primer paso, sin fondos no se puede jugar
  function placeFunds(inputFunds) {
@@ -162,7 +199,7 @@
      funds += inputFunds
      localStorage.setItem('localPlayer', funds);
 
-     fundsDisplay("You have $" + funds + " to play");
+     updateDisplay();
      fundsForm.style.display = 'none';
 
    }
@@ -188,8 +225,8 @@
 
  function dealRandomCard() {
    const index = Math.floor(Math.random() * deck.length);
-   const selectedCard = deck[index]; //
-   deck.splice(index, 1); // 
+   const selectedCard = deck[index]; 
+   deck.splice(index, 1); 
    return selectedCard;
  }
 
@@ -234,10 +271,10 @@
      newBetTotal = funds - parseInt(bet);
      funds = newBetTotal
      localStorage.setItem('localPlayer', funds);
-     fundsDisplay("You have $" + funds + " to play");
+     updateDisplay();
      firstHand();
-
    };
+
    // pasados los chequeos se juega la primera mano, donde se reparten dos cartas para el jugador
    function firstHand() {
      $("#play").prop("disabled", true);
@@ -251,7 +288,7 @@
 
      gameScore += dealtCards[0].card + dealtCards[1].card;
      guidance("Click Hit or Stand to continue");
-     scoreDisplay("You have currently bet $" + bet + " and have " + gameScore + " points on the table");
+     updateDisplay();     
      onGame();
      return bet;
    }
@@ -264,8 +301,7 @@
 
  function startGame() {
    if (playerHand.hasChildNodes() || botHand.hasChildNodes()) {
-     $('#playerHand').empty();
-     $('#botHand').empty();
+    clearTableAnimation();
      clearScores();
      finishGame();
    }
@@ -287,6 +323,7 @@
    guidance("Click play to start");
    updateDisplay();
    scoreDisplay("");
+   scoreDisplayBig("");
  };
 
  // animo la remocion de cartas tras terminado el juego, a su vez removiendo los elementos del DOM en concatenacion
@@ -322,12 +359,22 @@
  function updateDisplay() {
    fundsDisplay("You have $" + funds + " to play");
    scoreDisplay("You have currently bet $" + bet + " and have " + gameScore + " points on the table");
+   scoreDisplayBig("Score: " + gameScore);
+   fundsDisplayBig("Funds: " + funds);
+ };
+
+ function updateFinalResultsDisplay() {  // variante instituida para los casos de resultado final de cada partida
+  fundsDisplay("You have $" + funds + " to play");  
+  fundsDisplayBig("Funds: " + funds);
+  scoreDisplayBig("Score: " + gameScore);
  }
 
  function clearScores() {
    gameScore = 0;
    botGameScore = 0;
- }
+   botScoreDisplay("");
+   scoreDisplayBig("");
+ };
 
  function updateFunds() {
    const funds = $('#addFundsInput').val();
@@ -339,7 +386,7 @@
  $(document).ready(function () {
    $("#reload").hide();
    $("#load").click(function () {
-     $("#list").empty();
+     $("#list").show();
      $("#loader").show();
      $("#load").prop("disabled", true);
      $.ajax("https://jsonplaceholder.typicode.com/users").done(function (users) {
@@ -347,9 +394,8 @@
        $("#reload").show();
        users.forEach(function (user) {
          $("#list").append(`<li>${user.name}</li>`);
-       });
+       });    
      });
-
    });
    $("#reload").click(function () {
      $("#list").empty();
@@ -357,4 +403,4 @@
      $("#loader").hide();
      $("#load").prop("disabled", false);
    });
- });
+ }); 

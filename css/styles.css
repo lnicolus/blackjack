@@ -19,6 +19,39 @@ h1, p, div, button {
   margin-top: 2%;
 }
 
+#displayWrapper{
+  display: flex;
+  flex-direction: row;
+  margin: auto;  
+  width: 100%;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#sideDisplay{
+margin-right: 5%;
+}
+
+#botsideDisplay div{
+  font-size: 1.5vw;
+}
+
+#botsideDisplay{  
+max-width: 15vw;
+margin-left: 5%;
+}
+
+#sideDisplay div{
+  font-size: 1.5vw;
+}
+
+.cardZone{
+  min-width: 30vw;
+}
+
+
 #botHand {
   margin-top: 4%;  
 }
@@ -28,7 +61,7 @@ h1, p, div, button {
  }
 
  p{
-  font-size: 1.5rem;
+  font-size: 1vw;
 }
 
 .position {
