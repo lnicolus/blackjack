@@ -70,7 +70,7 @@
  $("#hit").bind('click', () => {
    selectedCard = dealRandomCard(); // la carta se reparte y sale del array del mazo para no repetirse, cada carta es unica y no queremos hacer trampa
    dealtCards.push(selectedCard);
-   gameScore = gameScore + selectedCard.card;
+   gameScore = gameScore + parseInt(selectedCard.card);
    scoreDisplay("You have currently bet $" + bet + " and have " + gameScore + " points on the table");
    tableCard();
 
@@ -84,26 +84,28 @@
 
  /* Stand significa que no me pase de 21 y decido jugar mi suerte con el puntaje que ya tengo la jugada de la computadora esta encerrada en el evento de Stand,
   el unico en el que juega, ahi se define si el jugador puede ganar el doble de lo que aposto.
-  Siempre que la computadora tenga menos de 17 puntos totales, pedira una carta adicional. Cuando tenga 17 puntos o mas, se verifica quien gano.*/
+  Siempre que la computadora tenga menos puntos que el jugador, pedira una carta adicional. 
+  Cumplido ello, se verifica quien gano.*/
  const stand = document.querySelector("#stand");
  $("#stand").bind('click', () => {
    guidance("You stand against the House!");
    outOfGame();
    $("#quit").prop("disabled", false);
 
-   while (botGameScore < 17) {
-     computerDeal();
+   while (botGameScore < gameScore) {
+     computerDeal();     
    }
 
-   if (botGameScore >= 17) {
+   if (botGameScore >= gameScore) {
      closeGame();
    }
 
    /* Verificamos quien es victorioso y se realiza un update de los fondos de los que dispone el jugador en consecuencia.
    Prevemos no solamente quien tuvo mas puntos, sino ademas que hacer en caso de empate por identica puntuacion.*/
    function closeGame() {
-      // Caso gana el Bot
+      
     botScoreDisplay("Score: "+botGameScore);
+    // Caso gana el Bot
      if ((botGameScore > 21) || (botGameScore < gameScore)) {
        scoreDisplay("The House has " + botGameScore + " points and You've " + gameScore + " points, you WON!");
        funds = funds + (bet * 2);
@@ -113,7 +115,7 @@
        gameScore = 0;       
        return funds;
        // Caso Jugador gana
-     } else if ((botGameScore < 21) && (botGameScore > gameScore)) {
+     } else if ((botGameScore <= 21) && (botGameScore > gameScore)) {
        updateFinalResultsDisplay();
        scoreDisplay("The House has " + botGameScore + " points and You've " + gameScore + " points, you lost the bet");
        botGameScore = 0;
@@ -352,7 +354,7 @@ function botScoreDisplay(msg) {
 
    selectedCard = dealRandomCard(); // es un calco de la funcion que da cartas al jugador, pero el array es otro
    botDealtCards.push(selectedCard);
-   botGameScore = botGameScore + selectedCard.card;
+   botGameScore = botGameScore + parseInt(selectedCard.card);
    botTableCard();
  }
 
