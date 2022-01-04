@@ -92,7 +92,7 @@
    outOfGame();
    $("#quit").prop("disabled", false);
 
-   while (botGameScore < gameScore) {
+   while (botGameScore < gameScore && botGameScore < 17) {
      computerDeal();     
    }
 

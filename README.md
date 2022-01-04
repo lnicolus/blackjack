@@ -1,12 +1,25 @@
-INSTRUCCIONES
+WHY, AND HOW IT WORKS
 
-Correr el HTML con Live Server para que no fallen las llamadas asincronas, sobre todo el mazo, que esta en un JS aparte.
+ It was developed in HTML5, with CSS and, mainly Jquery, with much love for card games. Why? Because my grandma loved to play cards with little me. Fond memories made me enjoy this project.
 
-EN QUE CONSISTE
+ It calls asynchronously the deck from a separate file by the way of AJAX, and uses local storage to hold the information of your current funds.
+ Feature: Right below everything (scroll down fearlessly) you will find hidden a list of distinguished players, from which the bots take their names asynchronously (it is actually from an API).
 
-Es un juego de BlackJack que conserva los fondos del jugador de forma local. Las reglas son acercarse lo más posible a 21 puntos sin pasarse. 
-Se apuesta un monto de dinero que se duplica si el jugador gana. El jugador recibe dos cartas, y cada vez que toca "hit" pide una carta adicional.
-Una vez que el jugador hace "stand", juega la computadora (bajo un nombre traído de forma asíncrona mediante AJAX) procurando realizar lo mismo que el jugador para ganarle.
-La informacion relevante se va updateando de forma adecuada conforme al momento del juego.
-Feature: abajo de todo (hay que scrollear un poco hacia abajo) esta oculta de la vista la lista de jugadores distinguidos de la que toman nombre los bots.
+BLACKJACK
 
+The game keeps track locally of the player funds. Rules to win are try to reach as close as possible to 21 points without busting farther than that. 
+A money sum is bet, which is duplicated in case of a win, and added to the total player funds. 
+The player is dealt two cards, via an animation, and every time he/she clicks "hit" receives an additional card (and points). Once the player clicks "stand"
+the computer begins to play, procuring the same that the player did in order to win against him, under a series of adaptive conditions depending on the status
+of the player´s laid hand.
+
+Information is displayed accordingly to each situation to give advice to the player and letting him/her know the results.
+
+What´s missing? well, I would like to make it portable-friendly for cellphones. Certainly I would like to add better animations. I also have in account to 
+change the button display to something more fancy in the bottom of the screen. I will certainly return to this wonderful project once I have mastered ReactJS.
+
+Hope you enjoy it, and please, any counsel or critic is widely welcome. Hope to hear from you!
+
+Best regards, 
+
+Lucas
