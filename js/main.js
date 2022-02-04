@@ -77,8 +77,7 @@
    if (gameScore > 21) {
      // si el jugador pierde, ya no puede continuar tocando las teclas de juego, pero puede iniciar uno nuevo
      scoreDisplay("You've been dealt " + dealtCards[dealtCards.length - 1].suit + " you have thus " + gameScore + " points on the table and you busted! bet lost!");
-     guidance("Click play to continue");
-     guidance.style.backgroundColor = "red";
+     guidance("Click play to continue");     
      outOfGame();
    }
  });
@@ -260,6 +259,7 @@ function botScoreDisplay(msg) {
    if (isNaN(inputBet) || inputBet <= 0) {
 
      guidance("Place valid bet");
+     guidance.style.backgroundColor = "red";
      scoreDisplay("")
 
    } else if (inputBet > funds) {
