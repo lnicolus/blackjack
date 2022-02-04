@@ -78,6 +78,7 @@
      // si el jugador pierde, ya no puede continuar tocando las teclas de juego, pero puede iniciar uno nuevo
      scoreDisplay("You've been dealt " + dealtCards[dealtCards.length - 1].suit + " you have thus " + gameScore + " points on the table and you busted! bet lost!");
      guidance("Click play to continue");
+     guidance.style.backgroundColor = "red";
      outOfGame();
    }
  });
@@ -406,3 +407,6 @@ function botScoreDisplay(msg) {
      $("#load").prop("disabled", false);
    });
  }); 
+ let nombre = 'dan'
+ let apellido = 'jodan'
+ console.log(`mi nombre es ${nombre}, y mi apellido es ${apellido} `)
