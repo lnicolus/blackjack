@@ -77,7 +77,8 @@
    if (gameScore > 21) {
      // si el jugador pierde, ya no puede continuar tocando las teclas de juego, pero puede iniciar uno nuevo
      scoreDisplay("You've been dealt " + dealtCards[dealtCards.length - 1].suit + " you have thus " + gameScore + " points on the table and you busted! bet lost!");
-     guidance("Click play to continue");     
+     guidance("Click play to continue"); 
+     guidanceE.style.backgroundColor = "YellowGreen";    
      outOfGame();
    }
  });
@@ -89,6 +90,7 @@
  const stand = document.querySelector("#stand");
  $("#stand").bind('click', () => {
    guidance("You stand against the House!");
+   guidanceE.style.backgroundColor = "YellowGreen";
    outOfGame();
    $("#quit").prop("disabled", false);
 
@@ -270,7 +272,7 @@ function botScoreDisplay(msg) {
 
      bet += inputBet
      scoreDisplay("You have currently bet $" + bet);
-     guidanceE.style.backgroundColor = "none";
+     guidanceE.style.backgroundColor = "YellowGreen";
      betForm.style.display = 'none';
      newBetTotal = funds - parseInt(bet);
      funds = newBetTotal
@@ -292,6 +294,7 @@ function botScoreDisplay(msg) {
 
      gameScore += dealtCards[0].card + dealtCards[1].card;
      guidance("Click Hit or Stand to continue");
+     guidanceE.style.backgroundColor = "YellowGreen";
      updateDisplay();     
      onGame();
      return bet;
@@ -325,6 +328,7 @@ function botScoreDisplay(msg) {
    bet = 0;
    localStorage.setItem('localPlayer', funds);
    guidance("Click play to start");
+   guidanceE.style.backgroundColor = "YellowGreen";
    updateDisplay();
    scoreDisplay("");
    scoreDisplayBig("");
