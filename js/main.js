@@ -259,7 +259,7 @@ function botScoreDisplay(msg) {
    if (isNaN(inputBet) || inputBet <= 0) {
 
      guidance("Place valid bet");
-     guidance.style.backgroundColor = "red";
+     guidanceE.style.backgroundColor = "red";
      scoreDisplay("")
 
    } else if (inputBet > funds) {
@@ -270,6 +270,7 @@ function botScoreDisplay(msg) {
 
      bet += inputBet
      scoreDisplay("You have currently bet $" + bet);
+     guidanceE.style.backgroundColor = "none";
      betForm.style.display = 'none';
      newBetTotal = funds - parseInt(bet);
      funds = newBetTotal
