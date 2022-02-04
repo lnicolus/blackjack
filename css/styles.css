@@ -1,66 +1,73 @@
 @charset "UTF-8";
 
-h1, p, div, button {
-  font-family: 'Cinzel Decorative';
- }
+h1,
+p,
+div,
+button {
+  font-family: "Cinzel Decorative";
+}
 
- .ajax, .ajax button, .ajax div, .ajax ul {
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-   background-color: black;
-   color: blanchedalmond;   
- }
- 
-#fundsForm, #betForm {
-  display:none;
+.ajax,
+.ajax button,
+.ajax div,
+.ajax ul {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: black;
+  color: blanchedalmond;
+}
+
+#fundsForm,
+#betForm {
+  display: none;
   color: black;
   font-weight: bold;
   margin-top: 2%;
 }
 
-#displayWrapper{
+#displayWrapper {
   display: flex;
-  flex-direction: row;   
+  flex-direction: row;
   width: 100%;
-  flex-wrap: nowrap;    
+  flex-wrap: nowrap;
   justify-content: space-evenly;
   align-items: center;
 }
 
-#sideDisplay{
-margin-right: 5%;
+#sideDisplay {
+  margin-right: 5%;
 }
 
-#botsideDisplay div{
+#botsideDisplay div {
   font-size: 1.5vw;
 }
 
-#botsideDisplay{  
-max-width: 15vw;
+#botsideDisplay {
+  max-width: 15vw;
 }
 
-#sideDisplay div{
+#sideDisplay div {
   font-size: 1.5vw;
 }
 
-.cardZone{
+.cardZone {
   min-width: 30vw;
   display: flex;
   flex-direction: column;
 }
 
 #botHand {
-  margin-top: 4%;  
+  margin-top: 4%;
   display: flex;
   flex-direction: row;
 }
 
- h1{
-   font-size: 6rem;
- }
+h1 {
+  font-size: 6rem;
+}
 
- p{
+p {
   font-size: 1vw;
 }
 
@@ -83,20 +90,19 @@ max-width: 15vw;
   width: 15rem;
 }
 
-#pageContentWrapper {  
-  background-image: url("../assets/background.webp");  
-  background-position: center; 
-  background-repeat: no-repeat; 
+#pageContentWrapper {
+  background-image: url("../assets/background.webp");
+  background-position: center;
+  background-repeat: no-repeat;
   background-size: cover;
-  background-attachment: fixed; 
+  background-attachment: fixed;
   min-width: 0;
   width: 100%;
 }
 
-
 .gameContainer {
   display: flex;
-  flex-direction: column;  
+  flex-direction: column;
   text-align: center;
 }
 
@@ -110,7 +116,7 @@ max-width: 15vw;
 
 .backgroundStyle {
   background-color: black;
-  color: aliceblue; 
+  color: aliceblue;
 }
 
 .backgroundStyle a {
@@ -136,21 +142,27 @@ max-width: 15vw;
 }
 
 .hand {
-    display: inline-block;
-    width: 150px;
-    height: 200px;
-    color: black;
-    font-size: 20px;
-    border: 2px solid gold;    
-    background-color: white;
-    margin: 0 20px 20px 0;
-    text-align: center;
-    line-height: 150px;    
-    user-select: none;
+  display: inline-block;
+  width: 150px;
+  height: 200px;
+  color: black;
+  font-size: 20px;
+  border: 2px solid gold;
+  background-color: white;
+  margin: 0 20px 20px 0;
+  text-align: center;
+  line-height: 150px;
+  user-select: none;
 }
 
 #playerHand {
   margin-top: 1%;
   display: flex;
   flex-direction: row;
+}
+
+#guidance {
+  margin: auto;
+  padding: 2px;
+  max-width: fit-content;
 }
